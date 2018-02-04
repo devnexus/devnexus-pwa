@@ -1,0 +1,25 @@
+{
+  "name": "DevNexus Schedule",
+  "short_name": "DevNexus",
+    "icons": [{
+    "src": "images/icons/icon-96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    }, {
+      "src": "images/icons/icon-72.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    }, {
+      "src": "images/icons/icon-144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    }, {
+      "src": "images/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }],
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#f6f8fa",
+  "theme_color": "#519d55"
+}

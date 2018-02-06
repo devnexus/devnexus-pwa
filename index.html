@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
 		<meta charset="utf-8">
 		<title>App Shell</title>
 		<link rel="manifest" href="/manifest.json">
@@ -10,9 +11,8 @@
 		<link rel="stylesheet" type="text/css" href="styles/inline.css">
 	</head>
 	<body>
-		<header>
-			<h1>Hello World 2!</h1>
-		</header>
+		<div id="app"></div>
+		<script src="bundle.js" async></script>
 
 		<script>
 			if ('serviceWorker' in navigator) {

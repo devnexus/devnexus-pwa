@@ -17,7 +17,6 @@ var cacheName = 'devnexusPWA-final-1';
 var filesToCache = [
   '/',
   '/index.html',
-  '/scripts/app.js',
   '/styles/inline.css'
 ];
 
@@ -26,7 +25,11 @@ self.addEventListener('install', function(e) {
   e.waitUntil(
     caches.open(cacheName).then(function(cache) {
       console.log('[ServiceWorker] Caching app shell');
-      return cache.addAll(filesToCache);
+      return cache.addAll(filesToCache).catch(
+        function(reason){
+            console.log("Add all failed" + reason);
+            return Promise.reject(reason);
+          });
     })
   );
 });

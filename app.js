@@ -1,33 +1,37 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { createMuiTheme } from 'material-ui/styles/';
-import indigo from 'material-ui/colors/indigo';
-import pink from 'material-ui/colors/pink';
-import red from 'material-ui/colors/red';
-import Schedule from './script/Schedule'
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
+import purple from 'material-ui/colors/purple';
+import green from 'material-ui/colors/green';
+import Reboot from 'material-ui/Reboot';
+import AppShell from './script/AppShell';
 
-// All the following keys are optional.
-// We try our best to provide a great default value.
-var theme = createMuiTheme({
+const theme = createMuiTheme({
   palette: {
-    primary: indigo,
-    secondary: pink,
-    error: red,
-    // Used by `getContrastText()` to maximize the contrast between the background and
-    // the text.
-    contrastThreshold: 3,
-    // Used to shift a color's luminance by approximately
-    // two indexes within its tonal palette.
-    // E.g., shift from Red 500 to Red 300 or Red 700.
-    tonalOffset: 0.2,
-  }
+    primary: {
+      light: purple[300],
+      main: purple[500],
+      dark: purple[700],
+    },
+    secondary: {
+      light: green[300],
+      main: green[500],
+      dark: green[700],
+    },
+  },
 });
+
+if (process.browser) {
+  window.theme = theme;
+}
 
 
 ReactDOM.render(
-  <MuiThemeProvider  theme={theme}>
-         <Schedule />
-  </MuiThemeProvider>,
+  <MuiThemeProvider theme={theme}>
+        {/* Reboot kickstart an elegant, consistent, and simple baseline to build upon. */}
+        <Reboot />
+        <AppShell />
+      </MuiThemeProvider>,
   document.getElementById('app')
 );
+

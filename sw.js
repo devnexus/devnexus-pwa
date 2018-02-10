@@ -63,7 +63,7 @@ self.addEventListener('activate', function(e) {
 
 self.addEventListener('fetch', function(e) {
   console.log('[Service Worker] Fetch', e.request.url);
-  var dataUrl = 'https://cfp.connectevents.io/en/dn2018/public/full_schedule.json';
+  var dataUrl = 'http://localhost:8080/full_schedule.json';
   if (e.request.url.indexOf(dataUrl) > -1) {
     /*
      * When the request URL contains dataUrl, the app is asking for fresh

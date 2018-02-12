@@ -37852,7 +37852,7 @@ function () {
     value: function scheduleUpdate() {
       var _this2 = this;
 
-      fetch('http://localhost:8080/full_schedule.json').then(function (response) {
+      fetch('/full_schedule.json').then(function (response) {
         return response.json();
       }).then(function (data) {
         _this2.data = data;

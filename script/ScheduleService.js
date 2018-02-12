@@ -23,7 +23,7 @@ class ScheduleService {
     }
 
     scheduleUpdate() {
-        fetch('http://localhost:8080/full_schedule.json')
+        fetch('/full_schedule.json')
         .then((response) => {
             return response.json();
         }).then((data) => {

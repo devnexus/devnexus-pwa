@@ -14,6 +14,7 @@ import SendIcon from 'material-ui-icons/Send';
 import MailIcon from 'material-ui-icons/Mail';
 import DeleteIcon from 'material-ui-icons/Delete';
 import ReportIcon from 'material-ui-icons/Report';
+import Schedule from './Schedule'
 
 const styles = {
   root: {
@@ -27,6 +28,10 @@ const styles = {
     marginRight: 20,
   },
 };
+
+const scheduleStyle = {
+  ['z-index']:-10
+}
 
 class AppShell extends React.Component {
 
@@ -56,6 +61,7 @@ class AppShell extends React.Component {
           </Typography>
         </Toolbar>
       </AppBar>
+      <Schedule style={scheduleStyle}/>
       <Drawer open={this.state.open} onClose={this.handleDrawerToggle}>
           <div
             tabIndex={0}
@@ -64,31 +70,31 @@ class AppShell extends React.Component {
             onKeyDown={this.handleDrawerToggle}
           >
             <div>
-    <ListItem button>
-      <ListItemIcon>
-        <InboxIcon />
-      </ListItemIcon>
-      <ListItemText primary="Inbox" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <StarIcon />
-      </ListItemIcon>
-      <ListItemText primary="Starred" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <SendIcon />
-      </ListItemIcon>
-      <ListItemText primary="Send mail" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <DraftsIcon />
-      </ListItemIcon>
-      <ListItemText primary="Drafts" />
-    </ListItem>
-  </div>
+              <ListItem button>
+                <ListItemIcon>
+                  <InboxIcon />
+                </ListItemIcon>
+                <ListItemText primary="Inbox" />
+              </ListItem>
+              <ListItem button>
+                <ListItemIcon>
+                  <StarIcon />
+                </ListItemIcon>
+                <ListItemText primary="Starred" />
+              </ListItem>
+              <ListItem button>
+                <ListItemIcon>
+                  <SendIcon />
+                </ListItemIcon>
+                <ListItemText primary="Send mail" />
+              </ListItem>
+              <ListItem button>
+                <ListItemIcon>
+                  <DraftsIcon />
+                </ListItemIcon>
+                <ListItemText primary="Drafts" />
+              </ListItem>
+            </div>
 
           </div>
         </Drawer>

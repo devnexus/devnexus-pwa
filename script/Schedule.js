@@ -9,10 +9,15 @@ export class Schedule extends React.Component {
     };
     this.handleUpdate = this.handleUpdate.bind(this);
     this.doUpdate = this.doUpdate.bind(this);
+    this.allRooms = this.allRooms.bind(this);
   }
 
   doUpdate() {
     ScheduleService.scheduleUpdate();
+  }
+
+  allRooms() {
+    console.log(ScheduleService.allRooms());
   }
 
   handleUpdate(data) {
@@ -28,7 +33,10 @@ export class Schedule extends React.Component {
   }
 
   render()  {
-    return <Button variant="raised" onClick={this.doUpdate}>Default</Button>;
+    return <div>
+              <Button variant="raised" onClick={this.doUpdate}>Update Schedule</Button> 
+              <Button variant="raised" onClick={this.allRooms}>List Rooms</Button> 
+            </div>;
   }
 
 }

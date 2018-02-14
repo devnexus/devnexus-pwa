@@ -7,6 +7,7 @@ import List, {
 } from 'material-ui/List';
 import React from 'react';
 import Button from 'material-ui/Button';
+import Typography from 'material-ui/Typography';
 import AppBar from 'material-ui/AppBar';
 import { withStyles } from 'material-ui/styles';
 import ScheduleService from './ScheduleService';
@@ -31,6 +32,7 @@ export class Schedule extends React.Component {
     super(props);
     this.state = {
       date: Dates[0],
+      dateIndex: 0,
       agenda: false
     };
     
@@ -39,6 +41,7 @@ export class Schedule extends React.Component {
     this.allRooms = this.allRooms.bind(this);
     this.setDate = this.setDate.bind(this);
     this.setAgenda = this.setAgenda.bind(this);
+    this.scheduleTable = this.scheduleTable.bind(this);
   }
 
   doUpdate() {
@@ -51,6 +54,7 @@ export class Schedule extends React.Component {
 
   handleUpdate(data) {
     console.log(data);
+    this.forceUpdate();
   }
 
   componentDidMount() {
@@ -64,6 +68,7 @@ export class Schedule extends React.Component {
   setDate(dateIndex) {
     this.setState({
         date: Dates[dateIndex],
+        dateIndex: dateIndex,
         agenda: false
       }
     );
@@ -72,9 +77,44 @@ export class Schedule extends React.Component {
   setAgenda() {
     this.setState({
         date: Dates[0],
+        dateIndex:0,
         agenda: true
       }
     );
+  }
+
+  scheduleTable() {
+    var schedule =  ScheduleService.getScheduleForDateGroupedByTime(this.state.dateIndex);
+    var time;
+    var rows = [];
+    {
+      for (time in schedule) {
+        if (schedule.hasOwnProperty(time)) {
+            var scheduleItems = schedule[time];
+            rows.push(<TableRow key={rows.length}><TableCell numeric={true}     style={{ borderRight: '0.1em solid rgba(0, 0, 0, 0.12)', padding: '30px 30px 30px 0',width:"15em", "verticalAlign": "top" }}>
+              <Typography style={{"fontSize":"24px"}}>{time}</Typography>
+            </TableCell><TableCell style={{padding:"0", margin:"0"}}>
+              <List>
+                {
+                  scheduleItems.map((item) => (
+                    <ListItem key={scheduleItems.indexOf(item)} divider={true}>
+                      <ListItemText
+                          primary={item.title}
+                          secondary={item.track}
+                      />
+                    </ListItem>
+                  ))
+                }
+              </List>
+            </TableCell></TableRow >);
+        }
+      }
+    }
+    return (<div><Table>
+    <TableBody>
+        {rows}
+    </TableBody>
+    </Table></div>);
   }
 
   render()  {
@@ -84,49 +124,17 @@ export class Schedule extends React.Component {
     }
     return <div>
                   <Toolbar >
-                    <Tabs style={flex}>
-                      <Tab label="Agenda" onClick={this.setAgenda}/>
-                      <Tab label="Feb 21" onClick={this.setDate.bind(this, 0)}/>
-                      <Tab label="Feb 22" onClick={this.setDate.bind(this, 1)}/>
-                      <Tab label="Feb 23" onClick={this.setDate.bind(this, 2)}/>                
+                    <Tabs style={flex} value={this.state.agenda?0:(this.state.dateIndex+1)}>
+                      <Tab label="Agenda" onClick={this.setAgenda} style={{"color":"black"}}/>
+                      <Tab label="Feb 21" onClick={this.setDate.bind(this, 0)} style={{"color":"black"}}/>
+                      <Tab label="Feb 22" onClick={this.setDate.bind(this, 1)} style={{"color":"black"}}/>
+                      <Tab label="Feb 23" onClick={this.setDate.bind(this, 2)} style={{"color":"black"}}/>                
                     </Tabs>
                   <Button variant="raised" onClick={this.doUpdate}>Update Schedule</Button> 
                 <Button variant="raised" onClick={this.allRooms}>List Rooms</Button> 
                   </Toolbar>
                   <Divider/>
-                  <Table>
-                    <TableBody>
-                      <TableRow >
-                        <TableCell numeric="true"     style={{ borderRight: '0.1em solid rgba(0, 0, 0, 0.12)', padding: '0.5em' }}>
-                          9:00
-                        </TableCell>
-                        <TableCell style={{padding:"0", margin:"0"}}>
-                          <List>
-                          <ListItem>
-                          <ListItemText
-                                primary="Single-line item"
-                                secondary="Secondary text"
-                              />
-                            </ListItem>
-                            <Divider />
-                            <ListItem>                            
-                            <ListItemText
-                                primary="Single-line item"
-                                secondary="Secondary text"
-                              />
-                            </ListItem>
-                            <Divider />
-                            <ListItem>
-                            <ListItemText
-                                primary="Single-line item"
-                                secondary="Secondary text"
-                              />
-                            </ListItem>
-                          </List>
-                        </TableCell>
-                      </TableRow>
-                    </TableBody>
-                  </Table>
+                  {this.scheduleTable()}
             </div>;
   }
 

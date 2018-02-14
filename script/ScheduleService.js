@@ -8,6 +8,26 @@ class ScheduleService {
         this.data = {};
     }
 
+    getScheduleForDateGroupedByTime(dateIndex) {
+        if (!this.data.days  || !this.data.days[dateIndex]) {
+            return {};
+        }
+        const roomSchedule = this.data.days[dateIndex].rooms;
+        const daySchedule = {};
+        const rooms = this.allRooms()
+        rooms.forEach((room)=>{
+            if (roomSchedule[room.roomName]) {
+                roomSchedule[room.roomName].forEach((scheduleItem)=> {
+                    if (!daySchedule[scheduleItem.start]) {
+                        daySchedule[scheduleItem.start] = []
+                    }
+                    daySchedule[scheduleItem.start].push({title:scheduleItem.title, track:scheduleItem.track});
+                });
+            }
+        });
+        return daySchedule;
+    }
+
     addListener(listener) {
         this.listeners.push(listener);
         listener(this.data);
@@ -32,18 +52,6 @@ class ScheduleService {
         }
     }
 
-    /**
-     * 
-     * @param {String} date in yyyy-mm-dd format
-     * @returns {Array} of rooms
-     */
-    fetchRooms(date) {
-        if (!day) {
-            return allRooms();
-        } else {
-            return roomsOnDate(day);
-        }
-    }
 
     allRooms() {
         var rooms = new Array();
@@ -62,6 +70,7 @@ class ScheduleService {
               ))
         );
     }
+
 
     scheduleUpdate() {
         fetch('/full_schedule.json')

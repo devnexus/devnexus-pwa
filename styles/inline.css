@@ -111,3 +111,21 @@ ul div.scheduleEventListItem:last-child {
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
+div p.presentation-header {
+    background-color: #f6921e;
+        padding: 30px 60px;
+        margin: 0;
+        color: #fff;
+}
+
+div p.biography-body {
+    margin: 40px;
+    font-size: 20px;
+}
+
+div p.biography-header {
+    background-color: #6c9c31;
+    padding: 30px 60px;
+    margin: 0;
+    color: #fff;
+}

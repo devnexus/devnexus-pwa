@@ -40,12 +40,8 @@ class AppShell extends React.Component {
     this.state = {
       open: false
     };
-    this.handleDrawerToggle = this.handleDrawerToggle.bind(this)
   }
 
-  handleDrawerToggle(e) {
-      this.setState({open: !this.state.open});
-  }
 
   render()  {
     const { classes } = this.props;
@@ -53,51 +49,12 @@ class AppShell extends React.Component {
     return <div>
        <AppBar position="static" color="default">
         <Toolbar>
-        <IconButton className={classes.menuButton} color="inherit" aria-label="Menu" onClick={(e)=> this.handleDrawerToggle(e)}>
-            <MenuIcon />
-          </IconButton>
           <Typography variant="title" color="inherit">
             DevNexus 2018 Schedule
           </Typography>
         </Toolbar>
       </AppBar>
       <Schedule style={scheduleStyle}/>
-      <Drawer open={this.state.open} onClose={this.handleDrawerToggle}>
-          <div
-            tabIndex={0}
-            role="button"
-            onClick={this.handleDrawerToggle}
-            onKeyDown={this.handleDrawerToggle}
-          >
-            <div>
-              <ListItem button>
-                <ListItemIcon>
-                  <InboxIcon />
-                </ListItemIcon>
-                <ListItemText primary="Inbox" />
-              </ListItem>
-              <ListItem button>
-                <ListItemIcon>
-                  <StarIcon />
-                </ListItemIcon>
-                <ListItemText primary="Starred" />
-              </ListItem>
-              <ListItem button>
-                <ListItemIcon>
-                  <SendIcon />
-                </ListItemIcon>
-                <ListItemText primary="Send mail" />
-              </ListItem>
-              <ListItem button>
-                <ListItemIcon>
-                  <DraftsIcon />
-                </ListItemIcon>
-                <ListItemText primary="Drafts" />
-              </ListItem>
-            </div>
-
-          </div>
-        </Drawer>
     </div>
   }
 

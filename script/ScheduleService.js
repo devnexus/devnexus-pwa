@@ -29,6 +29,10 @@ class ScheduleService {
 
     }
 
+    findScheduleItem(dateIndex, roomName, roomIndex) {
+        return this.data.days[dateIndex].rooms[roomName][roomIndex];
+    }
+
     getScheduleForDateGroupedByTime(dateIndex) {
         if (!this.data.days  || !this.data.days[dateIndex]) {
             return {};
@@ -38,11 +42,11 @@ class ScheduleService {
         const rooms = this.allRooms()
         rooms.forEach((room)=>{
             if (roomSchedule[room.roomName]) {
-                roomSchedule[room.roomName].forEach((scheduleItem)=> {
+                roomSchedule[room.roomName].forEach((scheduleItem, index)=> {
                     if (!daySchedule[scheduleItem.start]) {
                         daySchedule[scheduleItem.start] = []
                     }
-                    daySchedule[scheduleItem.start].push({title:scheduleItem.title, track:scheduleItem.track, room:this.mapping[scheduleItem.room]});
+                    daySchedule[scheduleItem.start].push({title:scheduleItem.title, track:scheduleItem.track, room:this.mapping[scheduleItem.room], detailsArgs: [dateIndex, room.roomName, index]});
                 });
             }
         });

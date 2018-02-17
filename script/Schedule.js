@@ -23,6 +23,7 @@ import Table, {
   TableRow,
   TableSortLabel,
 } from 'material-ui/Table';
+import ScheduleDetail from './ScheduleDetail'
 
 const styles = theme => ({});
 const Dates = [new Date(2018, 1, 21), new Date(2018, 1, 22),new Date(2018, 1, 23)]
@@ -39,6 +40,7 @@ export class Schedule extends React.Component {
       agenda: false
     };
     
+    
     this.handleUpdate = this.handleUpdate.bind(this);
     this.doUpdate = this.doUpdate.bind(this);
     this.allRooms = this.allRooms.bind(this);
@@ -46,6 +48,16 @@ export class Schedule extends React.Component {
     this.setAgenda = this.setAgenda.bind(this);
     this.scheduleTable = this.scheduleTable.bind(this);
     this.updateDimensions = this.updateDimensions.bind(this);
+    this.displayDetails = this.displayDetails.bind(this);
+    
+  }
+
+  displayDetails(dateIndex, roomName, roomIndex) {
+    console.log(dateIndex + "," + roomName + "," +  roomIndex);
+
+    var scheduleItem = ScheduleService.findScheduleItem(dateIndex, roomName, roomIndex);
+
+    this.dialog.handleClickOpen(scheduleItem);
   }
 
   updateDimensions() {
@@ -132,7 +144,7 @@ export class Schedule extends React.Component {
                   <List className="scheduleEventsColumn" style={{"paddingTop":"0"}}>
                     {
                       scheduleItems.map((item) => (
-                        <ListItem key={scheduleItems.indexOf(item)} >
+                        <ListItem className="scheduleEventListItem" key={scheduleItems.indexOf(item)} button style={{"backgroundColor":"white"}} onClick={()=>{this.displayDetails(...item.detailsArgs)}} >
                           <ListItemText
                               primary={item.title}
                               secondary={item.track?(item.track + " | " + item.room):"Joystick Gamebar"}
@@ -170,6 +182,7 @@ export class Schedule extends React.Component {
             </Toolbar>
             <Divider/>
             {this.scheduleTable()}
+            <ScheduleDetail onRef= {(dialog)=>{this.dialog = dialog; }}/>
             </div>;
   }
 

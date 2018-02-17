@@ -94,11 +94,11 @@ body {
     padding-top: 0px !important;
 }
 
-.scheduleEventsColumn li {
+ul div.scheduleEventListItem {
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
-.scheduleEventsColumn li:last-child {
+ul div.scheduleEventListItem:last-child {
     border-bottom: none
 }
 

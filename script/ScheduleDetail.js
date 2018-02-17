@@ -22,15 +22,18 @@ export class ScheduleDetail extends React.Component {
   
 
   handleClickOpen(item) {
+    window.location.hash = "#open";
     this.setState({ open: true, item:item });
   };
 
   handleClose() {
+    window.location.hash = "";
     this.setState({ open: false,item:{} });
   };
 
   componentDidMount() {
     this.props.onRef(this)
+    window.addEventListener("hashchange", () => { if(window.location.hash === "") {this.handleClose()} }, false);
   }
 
   render() {

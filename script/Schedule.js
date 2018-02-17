@@ -49,7 +49,7 @@ export class Schedule extends React.Component {
     this.scheduleTable = this.scheduleTable.bind(this);
     this.updateDimensions = this.updateDimensions.bind(this);
     this.displayDetails = this.displayDetails.bind(this);
-    
+    window.location.hash = "";
   }
 
   displayDetails(dateIndex, roomName, roomIndex) {

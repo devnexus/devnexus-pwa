@@ -174,7 +174,6 @@ export class Schedule extends React.Component {
     return <div>
             <Toolbar id="toolbar">
               <Tabs style={flex} value={this.state.agenda?0:(this.state.dateIndex+1)}>
-                <Tab label="Agenda" onClick={this.setAgenda} style={{"color":"black"}}/>
                 <Tab label="Feb 21" onClick={this.setDate.bind(this, 0)} style={{"color":"black"}}/>
                 <Tab label="Feb 22" onClick={this.setDate.bind(this, 1)} style={{"color":"black"}}/>
                 <Tab label="Feb 23" onClick={this.setDate.bind(this, 2)} style={{"color":"black"}}/>                

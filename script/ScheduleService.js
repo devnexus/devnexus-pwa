@@ -6,6 +6,27 @@ class ScheduleService {
         this._type = "ScheduleService"
         this.listeners = [];
         this.data = {};
+
+        this.mapping = {
+            "Agile": "A311",
+            "Architecture": "A403",
+            "Core Cloud": "A305",
+            "Core Java": "A412",
+            "Frameworks": "A302",
+            "JavaScript": "A411",
+            "JVM Languages": "A402",
+            "Microservices": "A312",
+            "Mobile": "A405",
+            "Nighthacking": "Nighthacking Stage",
+            "Patterns & Design": "A315",
+            "Performance": "A301",
+            "Room 15": "A316",
+            "Security": "A313",
+            "Serverless and Cloud": "A404",
+            "Sidney Marcus": "Sidney Marcus",
+            "Web": "A314"
+        };
+
     }
 
     getScheduleForDateGroupedByTime(dateIndex) {
@@ -21,7 +42,7 @@ class ScheduleService {
                     if (!daySchedule[scheduleItem.start]) {
                         daySchedule[scheduleItem.start] = []
                     }
-                    daySchedule[scheduleItem.start].push({title:scheduleItem.title, track:scheduleItem.track});
+                    daySchedule[scheduleItem.start].push({title:scheduleItem.title, track:scheduleItem.track, room:this.mapping[scheduleItem.room]});
                 });
             }
         });

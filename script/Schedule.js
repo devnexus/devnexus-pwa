@@ -30,6 +30,9 @@ const Dates = [new Date(2018, 1, 21), new Date(2018, 1, 22),new Date(2018, 1, 23
 export class Schedule extends React.Component {
   constructor(props) {
     super(props);
+    
+    this.corrected = false;
+
     this.state = {
       date: Dates[0],
       dateIndex: 0,
@@ -46,6 +49,7 @@ export class Schedule extends React.Component {
   }
 
   updateDimensions() {
+    const appbar = document.getElementById("appbar");
     const toolbar = document.getElementById("toolbar");
     const listBody = document.getElementById("listBody");
     
@@ -53,11 +57,10 @@ export class Schedule extends React.Component {
       return;
     }
 
-    const viewHeight = window.innerHeight - toolbar.clientHeight;
+    const viewHeight = window.innerHeight - toolbar.clientHeight - appbar.clientHeight ;
     listBody.style['max-height'] = viewHeight + "px";
     listBody.style['overflow'] = 'auto';
     
-
   }
 
   componentDidMount() {
@@ -79,6 +82,7 @@ export class Schedule extends React.Component {
 
  componentDidUpdate() {
   this.updateDimensions();
+  document.getElementById('listBody').scrollTop = 0;
  }
 
 
@@ -91,7 +95,7 @@ export class Schedule extends React.Component {
   }
 
   handleUpdate(data) {
-    console.log(data);
+    this.correct = false;
     this.forceUpdate();
   }
 
@@ -123,15 +127,15 @@ export class Schedule extends React.Component {
         if (schedule.hasOwnProperty(time)) {
             var scheduleItems = schedule[time];
             rows.push(
-              <div className="scheduleRow">
+              <div className="scheduleRow" key={time}>
                   <Typography className="scheduleEventTime" style={{"fontSize":"24px"}}>{time}</Typography>
-                  <List className="scheduleEventsColumn">
+                  <List className="scheduleEventsColumn" style={{"paddingTop":"0"}}>
                     {
                       scheduleItems.map((item) => (
-                        <ListItem key={scheduleItems.indexOf(item)} divider={true}>
+                        <ListItem key={scheduleItems.indexOf(item)} >
                           <ListItemText
                               primary={item.title}
-                              secondary={item.track}
+                              secondary={item.track?(item.track + " | " + item.room):"Joystick Gamebar"}
                           />
                         </ListItem>
                       ))
@@ -144,6 +148,9 @@ export class Schedule extends React.Component {
     return (
     <div id="listBody">
       {rows}
+      <Divider/>
+      <div className="scheduleRow"></div>
+      <div className="scheduleRow"></div>
     </div>);
   }
 
@@ -160,8 +167,6 @@ export class Schedule extends React.Component {
                 <Tab label="Feb 22" onClick={this.setDate.bind(this, 1)} style={{"color":"black"}}/>
                 <Tab label="Feb 23" onClick={this.setDate.bind(this, 2)} style={{"color":"black"}}/>                
               </Tabs>
-              <Button variant="raised" onClick={this.doUpdate}>Update Schedule</Button> 
-              <Button variant="raised" onClick={this.allRooms}>List Rooms</Button> 
             </Toolbar>
             <Divider/>
             {this.scheduleTable()}

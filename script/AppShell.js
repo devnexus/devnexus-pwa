@@ -47,7 +47,7 @@ class AppShell extends React.Component {
     const { classes } = this.props;
 
     return <div>
-       <AppBar position="static" color="default">
+       <AppBar position="static" color="default" id="appbar">
         <Toolbar>
           <Typography variant="title" color="inherit">
             DevNexus 2018 Schedule

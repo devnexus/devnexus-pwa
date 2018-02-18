@@ -192,48 +192,8 @@
                             "avatar_path": "/system/avatars/995/large/Me.jpg?1509416622"
                         }]
                     }],
-                    "Room 15": [{
-                        "id": 1630,
-                        "date": "2018-02-21T09:00:00-05:00",
-                        "start": "09:00",
-                        "duration": "08:00",
-                        "room": "Room 15",
-                        "title": "Eclipse Collections Kata: Fun way to learn a collections framework",
-                        "track": "workshop",
-                        "type": "workshop",
-                        "abstract": "In this tutorial session, the audience will learn Eclipse Collections by going through the Eclipse Collections Kata. This kata is set up as a series of unit tests which fail. The participants will make them pass using Eclipse Collections. The instructors will discuss the solutions live and explain the concepts behind the iteration patterns in greater detail.\r\n\r\nIteration patterns with Java 8 streams patterns, basic refactoring techniques and memory, performance comparisons will be covered in the tutorial.\r\n\r\nEclipse Collections (formerly known as GS Collections) is an open-source Java collections framework which supplements JDK collections. It was migrated to Eclipse foundation in October 2015. Eclipse collections has both object and primitive containers; rich APIs available for eager and lazy iteration patterns; mutable and immutable collections; and additional container types not available in the JDK, such as Bag and Multimap. \r\n\r\nFor more information on Eclipse Collections visit: http://www.eclipse.org/collections/",
-                        "persons": [{
-                            "id": 1005,
-                            "full_public_name": "Donald Raab",
-                            "abstract": "Donald Raab works in the Application Platform and Services team at BNY Mellon in the Jersey City Innovation Center. Donald is a member of the Java Specification Request (JSR) 335 Expert Group and has presented at JavaOne, Devoxx US, EclipseCon, GIDS and the JVM Language Summit. He created the Eclipse Collections Java library which was originally open sourced as GS Collections in 2012 and migrated to the Eclipse Foundation in 2015.",
-                            "twitter_name": "@TheDonRaab",
-                            "avatar_path": "/system/avatars/1005/large/PZjOBoO9_400x400.jpeg?1510755909"
-                        }, {
-                            "id": 884,
-                            "full_public_name": "Nikhil Nanivadekar",
-                            "abstract": "Nikhil Nanivadekar is a Vice President in Private Wealth Management in the Technology division of Goldman Sachs. Nikhil is the project lead and committer for Eclipse Collections and has presented at JavaOne, DevoxxUS and Java User Group meetups. He is passionate about robotics has conducted robotics workshops at JCrete4Kids, JavaOne4Kids and Devoxx4Kids. Nikhil graduated in 2012 from University of Utah with a Masters in Mechanical Engineering with specialization in Robotics and Controls. Nikhil was inducted in the Oracle Developer Champions program in 2017.",
-                            "twitter_name": "nikhilnanivade",
-                            "avatar_path": null
-                        }]
-                    }],
-                    "Sidney Marcus": [{
-                        "id": 2088,
-                        "date": "2018-02-21T09:00:00-05:00",
-                        "start": "09:00",
-                        "duration": "08:00",
-                        "room": "Sidney Marcus",
-                        "title": "Grails 3 and React Workshop",
-                        "track": "workshop",
-                        "type": "",
-                        "abstract": "Historically, Grails applications that contain a browser-based front end have most often utilized server-side HTML generation built with Groovy Server Pages (GSP).  This approach makes sense for a lot of applications but not for all.  Modern web apps are often built as \u201cSingle Page Apps\u201d (SPA) made up of a rich front end implemented in Javascript and stateless backend REST services for which Grails is perfectly suited.  To leverage the benefits of an approach like that Grails provides first-rate support for building SPAs with Grails 3 and part of that support comes in the way of Grails 3 Profiles specifically designed to jumpstart the development of web applications utilizing that type of architecture. This workshop will explore many details related to building a Single Page Application using React and Grails 3.  Topics include the following:\r\n\u2022Introduction To Grails 3\r\n\u2022Introduction To React\r\n\u2022The React Profile For Grails 3\r\n\u2022REST Services\r\n\u2022JSON Views\r\n\u2022Spring Security REST\r\n\u2022Tying It All Together\r\n\r\nThe workshop will include roughly 50% lecture and demonstrations and 50% hands-on lab work building a real application utilizing React on the front end, Grails 3 RESTservices on the backend and Spring Security to provide role-based authentication and authorization for securing access to various capabilities in the application.",
-                        "persons": [{
-                            "id": 1154,
-                            "full_public_name": "Jeff Brown",
-                            "abstract": "Jeff Brown, Grails co-founder, has been doing JVM application development for as long as the JVM has existed and has spent most of the last decade focused specifically on work related to the Grails framework. \r\n\r\nJeff co-authored The Definitive Guide To Grails Second Edition, and The Definitive Guide To Grails 2, with Grails founder and OCI Grails Development Lead, Graeme Rocher. Jeff is a regular public speaker on Grails, Groovy and other JVM-related technologies.",
-                            "twitter_name": "@jeffscottbrown",
-                            "avatar_path": "/system/avatars/1154/large/jeff.png?1513694318"
-                        }]
-                    }],
+                    "Room 15": [],
+                    "Sidney Marcus": [],
                     "Nighthacking": [],
                     "Frameworks": [{
                         "id": 1945,
@@ -348,7 +308,8 @@
                             "twitter_name": "neal4d",
                             "avatar_path": "/system/avatars/711/large/NF.png?1512951094"
                         }]
-                    }]
+                    }],
+                    "Foyer": []
                 }
             }, {
                 "index": 1,
@@ -511,21 +472,21 @@
                             "avatar_path": "/system/avatars/236/large/DC.png?1512950439"
                         }]
                     }, {
-                        "id": 2066,
+                        "id": 1391,
                         "date": "2018-02-22T14:30:00-05:00",
                         "start": "14:30",
-                        "duration": "00:30",
+                        "duration": "01:00",
                         "room": "JavaScript",
-                        "title": "Apple Machine Learning",
-                        "track": "Mobile",
+                        "title": "You don't know Angular",
+                        "track": "JavaScript",
                         "type": "lecture",
-                        "abstract": "CoreML is Apple's new framework for hardware accelerated, local machine learning. We will discuss creating a model, converting it to the CoreML format and deploying it into an iOS application. ",
+                        "abstract": "Angular is an incredibly powerful framework with many nuances and quirks. So often as programmers we can create the same mistakes over and over again in our code without ever know there might be a better way. ",
                         "persons": [{
-                            "id": 1150,
-                            "full_public_name": "Alex Nachlas",
-                            "abstract": "Alex Nachlas is a software engineer and project lead at stable|kernel. He completed his undergraduate studies in mathematics and computer science at MIT and his masters of information and data science degree at UC Berkeley. He enjoys theoretical computer science, ice hockey and running.",
-                            "twitter_name": "",
-                            "avatar_path": "/system/avatars/1150/large/SK.Headshots.2015-12.jpg?1513695413"
+                            "id": 73,
+                            "full_public_name": "Josh Jensen",
+                            "abstract": "Currently a freelance mobile application consultant, Josh brings over 14 years of design, architecture, development and passion to his projects and presentations. In the almost 6 years he has been in the mobile space, he has brought hundreds of applications to market for companies ranging from Fortune 500 to startup, as well as contributing to many open source projects. End to end application structure, including mobile and server application architecture, are just a few of the tools Josh has collected over the years and he is passionate about sharing them with others.",
+                            "twitter_name": "joshj",
+                            "avatar_path": "/system/avatars/73/large/profile_picture.jpg?1485266081"
                         }]
                     }, {
                         "id": 1930,
@@ -551,21 +512,21 @@
                             "avatar_path": "/system/avatars/1042/large/Untitled-1.png?1510934112"
                         }]
                     }, {
-                        "id": 1391,
+                        "id": 2109,
                         "date": "2018-02-22T17:00:00-05:00",
                         "start": "17:00",
                         "duration": "01:00",
                         "room": "JavaScript",
-                        "title": "You don't know Angular",
-                        "track": "JavaScript",
+                        "title": "Exploring React/Redux-like Architectures in Android",
+                        "track": "Mobile",
                         "type": "lecture",
-                        "abstract": "Angular is an incredibly powerful framework with many nuances and quirks. So often as programmers we can create the same mistakes over and over again in our code without ever know there might be a better way. ",
+                        "abstract": "Navigating the pitfalls that often accompany Android development such as Scopes and Lifecycles, Activity vs Fragment vs \u201cSmart\u201d View, Orientation Changes, Async Calls, and Navigation can make really complicated and difficult-to-test code. React and Redux are technologies that are prevalent in the web world and have benefits such as a Single Source of truth, Predictable and testable behavior, Rewind/Fast Forward debugging, and Pure functions and objects, and in this talk, we'll talk about how to gain these benefits in Android applications.\r\n\r\n",
                         "persons": [{
-                            "id": 73,
-                            "full_public_name": "Josh Jensen",
-                            "abstract": "Currently a freelance mobile application consultant, Josh brings over 14 years of design, architecture, development and passion to his projects and presentations. In the almost 6 years he has been in the mobile space, he has brought hundreds of applications to market for companies ranging from Fortune 500 to startup, as well as contributing to many open source projects. End to end application structure, including mobile and server application architecture, are just a few of the tools Josh has collected over the years and he is passionate about sharing them with others.",
-                            "twitter_name": "joshj",
-                            "avatar_path": "/system/avatars/73/large/profile_picture.jpg?1485266081"
+                            "id": 341,
+                            "full_public_name": "Stephen Schwahn",
+                            "abstract": "Stephen is a Georgia Tech Alumnus, Chief Technical Officer at Plutonium Apps, and Software Engineer at Greenlight Financial. His hobbies include mountain biking, hiking, backpacking, and anything marching band.",
+                            "twitter_name": "Dogstopper",
+                            "avatar_path": "/system/avatars/341/large/IMG_5144.JPG?1469975052"
                         }]
                     }],
                     "Microservices": [{
@@ -874,7 +835,7 @@
                             "full_public_name": "windust",
                             "abstract": "",
                             "twitter_name": "fguime",
-                            "avatar_path": null
+                            "avatar_path": "/system/avatars/762/large/c859ec9be32acb8b4b1e7724b0dce608_400x400.png?1518901955"
                         }, {
                             "id": 855,
                             "full_public_name": "Mary Grygleski",
@@ -969,21 +930,27 @@
                             "avatar_path": "/system/avatars/1030/large/josh.png?1510325739"
                         }]
                     }, {
-                        "id": 1370,
+                        "id": 1275,
                         "date": "2018-02-22T17:00:00-05:00",
                         "start": "17:00",
                         "duration": "01:00",
                         "room": "Patterns & Design",
-                        "title": "Beautiful SDK Design in Java for APIs",
+                        "title": "How Do I Get Started in Open Source?",
                         "track": "Patterns & Design",
                         "type": "lecture",
-                        "abstract": "Often times Java SDKs for APIs look more like the API they represent than idiomatic Java.\r\n<p/>\r\nThis talk examines how great SDKs are built using design patterns.\r\n<p/>\r\nIt covers: enforced separation of Java api and implementation, use of generics, a caching layer and hiding network traffic.",
+                        "abstract": "Have you had this situation occur, you've taken a class or on-line course to advance your career\r\nand want to use this new skill, but can't apply it at where you work.   \r\nOr your are trying to get your first job but, get blocked because you have no real world\r\nexperience with this new skill.  There is a way you can get this experience to build that in depth knowledge\r\nthat can be added to a resume. Contribute to a Open Source Project.  \r\n\r\nThis presentation will discuss and demonstrate the tools and techniques that you will need \r\nto contribute to an open source project. As well as what to expect when you start contributing. \r\nWe will also show you the first steps you can take on selecting what to work on, when you get started.\r\n\r\n",
                         "persons": [{
-                            "id": 772,
-                            "full_public_name": "Micah Silverman",
-                            "abstract": "Developer, Maker, Tinkerer, Movie, TV and Gaming Nerd",
-                            "twitter_name": "afitnerd",
-                            "avatar_path": "/system/avatars/772/large/__Projects_StormPath_JavaRoadStorm2016_images_fjr1300.jpg?1505750595"
+                            "id": 761,
+                            "full_public_name": "Roy Clarkson",
+                            "abstract": "",
+                            "twitter_name": "royclarkson",
+                            "avatar_path": null
+                        }, {
+                            "id": 699,
+                            "full_public_name": "Glenn Renfro",
+                            "abstract": "As a Pivotal engineer, Glenn Renfro is a core committer for Spring Cloud Task, Spring Batch and Spring Cloud Data Flow. He has 14 years experience in designing, building and delivering enterprise level applications in Java and 21 years total of software development experience.",
+                            "twitter_name": "cppwfs",
+                            "avatar_path": "/system/avatars/699/large/glenn.jpeg?1504215166"
                         }]
                     }],
                     "Performance": [{
@@ -1303,6 +1270,17 @@
                     }],
                     "Room 15": [],
                     "Sidney Marcus": [{
+                        "id": 2062,
+                        "date": "2018-02-22T08:00:00-05:00",
+                        "start": "08:00",
+                        "duration": "00:45",
+                        "room": "Sidney Marcus",
+                        "title": "Registration",
+                        "track": "Keynote or 2nd Stage",
+                        "type": "lecture",
+                        "abstract": "TBD",
+                        "persons": []
+                    }, {
                         "id": 1875,
                         "date": "2018-02-22T09:00:00-05:00",
                         "start": "09:00",
@@ -1327,6 +1305,17 @@
                         }]
                     }],
                     "Nighthacking": [{
+                        "id": 2120,
+                        "date": "2018-02-22T11:00:00-05:00",
+                        "start": "11:00",
+                        "duration": "00:15",
+                        "room": "Nighthacking",
+                        "title": "Break - Java in the 21st Century (Nighthacking)",
+                        "track": null,
+                        "type": "",
+                        "abstract": "",
+                        "persons": []
+                    }, {
                         "id": 1382,
                         "date": "2018-02-22T12:00:00-05:00",
                         "start": "12:00",
@@ -1343,6 +1332,50 @@
                             "twitter_name": "heathervc",
                             "avatar_path": "/system/avatars/783/large/2016_07_10_HeatherVanCura-176-Edit.jpg?1511208772"
                         }]
+                    }, {
+                        "id": 2121,
+                        "date": "2018-02-22T13:00:00-05:00",
+                        "start": "13:00",
+                        "duration": "00:15",
+                        "room": "Nighthacking",
+                        "title": "Dessert - Building a serverless state service (NIghthacking)",
+                        "track": null,
+                        "type": "",
+                        "abstract": "",
+                        "persons": []
+                    }, {
+                        "id": 2122,
+                        "date": "2018-02-22T14:15:00-05:00",
+                        "start": "14:15",
+                        "duration": "00:15",
+                        "room": "Nighthacking",
+                        "title": "Break - Full-stack Reactive Java with Project Reactor & Spring Boot 2 (Nighthacking)",
+                        "track": null,
+                        "type": "",
+                        "abstract": "",
+                        "persons": []
+                    }, {
+                        "id": 2123,
+                        "date": "2018-02-22T15:30:00-05:00",
+                        "start": "15:30",
+                        "duration": "00:15",
+                        "room": "Nighthacking",
+                        "title": "Break - Microprofile (Nighthacking)",
+                        "track": null,
+                        "type": "",
+                        "abstract": "",
+                        "persons": []
+                    }, {
+                        "id": 2127,
+                        "date": "2018-02-22T16:45:00-05:00",
+                        "start": "16:45",
+                        "duration": "00:15",
+                        "room": "Nighthacking",
+                        "title": "Break - Tuning G1GC (Nighthacking)",
+                        "track": null,
+                        "type": "",
+                        "abstract": "",
+                        "persons": []
                     }, {
                         "id": 1922,
                         "date": "2018-02-22T18:00:00-05:00",
@@ -1869,7 +1902,8 @@
                             "twitter_name": "jonathanfmills",
                             "avatar_path": "/system/avatars/928/large/headshot.jpg?1507834298"
                         }]
-                    }]
+                    }],
+                    "Foyer": []
                 }
             }, {
                 "index": 2,
@@ -2308,21 +2342,21 @@
                             "avatar_path": "/system/avatars/709/large/DSC_0199.JPG?1511894458"
                         }]
                     }, {
-                        "id": 2109,
+                        "id": 2066,
                         "date": "2018-02-23T15:45:00-05:00",
                         "start": "15:45",
-                        "duration": "01:00",
+                        "duration": "00:30",
                         "room": "Mobile",
-                        "title": "Exploring React/Redux-like Architectures in Android",
+                        "title": "Apple Machine Learning",
                         "track": "Mobile",
                         "type": "lecture",
-                        "abstract": "Navigating the pitfalls that often accompany Android development such as Scopes and Lifecycles, Activity vs Fragment vs \u201cSmart\u201d View, Orientation Changes, Async Calls, and Navigation can make really complicated and difficult-to-test code. React and Redux are technologies that are prevalent in the web world and have benefits such as a Single Source of truth, Predictable and testable behavior, Rewind/Fast Forward debugging, and Pure functions and objects, and in this talk, we'll talk about how to gain these benefits in Android applications.\r\n\r\n",
+                        "abstract": "CoreML is Apple's new framework for hardware accelerated, local machine learning. We will discuss creating a model, converting it to the CoreML format and deploying it into an iOS application. ",
                         "persons": [{
-                            "id": 341,
-                            "full_public_name": "Stephen Schwahn",
-                            "abstract": "Stephen is a Georgia Tech Alumnus, Chief Technical Officer at Plutonium Apps, and Software Engineer at Greenlight Financial. His hobbies include mountain biking, hiking, backpacking, and anything marching band.",
-                            "twitter_name": "Dogstopper",
-                            "avatar_path": "/system/avatars/341/large/IMG_5144.JPG?1469975052"
+                            "id": 1150,
+                            "full_public_name": "Alex Nachlas",
+                            "abstract": "Alex Nachlas is a software engineer and project lead at stable|kernel. He completed his undergraduate studies in mathematics and computer science at MIT and his masters of information and data science degree at UC Berkeley. He enjoys theoretical computer science, ice hockey and running.",
+                            "twitter_name": "",
+                            "avatar_path": "/system/avatars/1150/large/SK.Headshots.2015-12.jpg?1513695413"
                         }]
                     }],
                     "Patterns & Design": [{
@@ -2394,27 +2428,21 @@
                             "avatar_path": "/system/avatars/774/large/SelfieInGermany.jpg?1511375825"
                         }]
                     }, {
-                        "id": 1275,
+                        "id": 1370,
                         "date": "2018-02-23T15:45:00-05:00",
                         "start": "15:45",
                         "duration": "01:00",
                         "room": "Patterns & Design",
-                        "title": "How Do I Get Started in Open Source?",
+                        "title": "Beautiful SDK Design in Java for APIs",
                         "track": "Patterns & Design",
                         "type": "lecture",
-                        "abstract": "Have you had this situation occur, you've taken a class or on-line course to advance your career\r\nand want to use this new skill, but can't apply it at where you work.   \r\nOr your are trying to get your first job but, get blocked because you have no real world\r\nexperience with this new skill.  There is a way you can get this experience to build that in depth knowledge\r\nthat can be added to a resume. Contribute to a Open Source Project.  \r\n\r\nThis presentation will discuss and demonstrate the tools and techniques that you will need \r\nto contribute to an open source project. As well as what to expect when you start contributing. \r\nWe will also show you the first steps you can take on selecting what to work on, when you get started.\r\n\r\n",
+                        "abstract": "Often times Java SDKs for APIs look more like the API they represent than idiomatic Java.\r\n<p/>\r\nThis talk examines how great SDKs are built using design patterns.\r\n<p/>\r\nIt covers: enforced separation of Java api and implementation, use of generics, a caching layer and hiding network traffic.",
                         "persons": [{
-                            "id": 761,
-                            "full_public_name": "Roy Clarkson",
-                            "abstract": "",
-                            "twitter_name": "royclarkson",
-                            "avatar_path": null
-                        }, {
-                            "id": 699,
-                            "full_public_name": "Glenn Renfro",
-                            "abstract": "As a Pivotal engineer, Glenn Renfro is a core committer for Spring Cloud Task, Spring Batch and Spring Cloud Data Flow. He has 14 years experience in designing, building and delivering enterprise level applications in Java and 21 years total of software development experience.",
-                            "twitter_name": "cppwfs",
-                            "avatar_path": "/system/avatars/699/large/glenn.jpeg?1504215166"
+                            "id": 772,
+                            "full_public_name": "Micah Silverman",
+                            "abstract": "Developer, Maker, Tinkerer, Movie, TV and Gaming Nerd",
+                            "twitter_name": "afitnerd",
+                            "avatar_path": "/system/avatars/772/large/__Projects_StormPath_JavaRoadStorm2016_images_fjr1300.jpg?1505750595"
                         }]
                     }],
                     "Performance": [{
@@ -2741,6 +2769,28 @@
                         "persons": []
                     }],
                     "Nighthacking": [{
+                        "id": 2119,
+                        "date": "2018-02-23T09:45:00-05:00",
+                        "start": "09:45",
+                        "duration": "00:15",
+                        "room": "Nighthacking",
+                        "title": "Break - InfoQ Interviews",
+                        "track": null,
+                        "type": "",
+                        "abstract": "",
+                        "persons": []
+                    }, {
+                        "id": 2116,
+                        "date": "2018-02-23T11:00:00-05:00",
+                        "start": "11:00",
+                        "duration": "00:15",
+                        "room": "Nighthacking",
+                        "title": "Break - Migrating to Java 9 (Nighthacking)",
+                        "track": null,
+                        "type": "",
+                        "abstract": "",
+                        "persons": []
+                    }, {
                         "id": 1665,
                         "date": "2018-02-23T12:00:00-05:00",
                         "start": "12:00",
@@ -2763,6 +2813,39 @@
                             "twitter_name": "michaelminella",
                             "avatar_path": "/system/avatars/873/large/me.jpg?1507129537"
                         }]
+                    }, {
+                        "id": 2128,
+                        "date": "2018-02-23T13:00:00-05:00",
+                        "start": "13:00",
+                        "duration": "00:15",
+                        "room": "Nighthacking",
+                        "title": "Dessert - Offheap Overtime (Nighthacking)",
+                        "track": null,
+                        "type": "",
+                        "abstract": "",
+                        "persons": []
+                    }, {
+                        "id": 2117,
+                        "date": "2018-02-23T14:15:00-05:00",
+                        "start": "14:15",
+                        "duration": "00:15",
+                        "room": "Nighthacking",
+                        "title": "Break - Cloud Native Java EE (Nighthacking)",
+                        "track": null,
+                        "type": "",
+                        "abstract": "",
+                        "persons": []
+                    }, {
+                        "id": 2118,
+                        "date": "2018-02-23T15:30:00-05:00",
+                        "start": "15:30",
+                        "duration": "00:15",
+                        "room": "Nighthacking",
+                        "title": "Break - Http 2 and Vert.x (Nighthacking)",
+                        "track": null,
+                        "type": "",
+                        "abstract": "",
+                        "persons": []
                     }],
                     "Frameworks": [{
                         "id": 1297,
@@ -3211,7 +3294,8 @@
                             "twitter_name": "rajagp",
                             "avatar_path": null
                         }]
-                    }]
+                    }],
+                    "Foyer": []
                 }
             }]
         }

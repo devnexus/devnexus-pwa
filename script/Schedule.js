@@ -37,7 +37,6 @@ export class Schedule extends React.Component {
     this.state = {
       date: Dates[0],
       dateIndex: 0,
-      agenda: false
     };
     
     
@@ -45,7 +44,6 @@ export class Schedule extends React.Component {
     this.doUpdate = this.doUpdate.bind(this);
     this.allRooms = this.allRooms.bind(this);
     this.setDate = this.setDate.bind(this);
-    this.setAgenda = this.setAgenda.bind(this);
     this.scheduleTable = this.scheduleTable.bind(this);
     this.updateDimensions = this.updateDimensions.bind(this);
     this.displayDetails = this.displayDetails.bind(this);
@@ -116,19 +114,10 @@ export class Schedule extends React.Component {
     this.setState({
         date: Dates[dateIndex],
         dateIndex: dateIndex,
-        agenda: false
       }
     );
   }
 
-  setAgenda() {
-    this.setState({
-        date: Dates[0],
-        dateIndex:0,
-        agenda: true
-      }
-    );
-  }
 
   scheduleTable() {
     var schedule =  ScheduleService.getScheduleForDateGroupedByTime(this.state.dateIndex);
@@ -173,7 +162,7 @@ export class Schedule extends React.Component {
     }
     return <div>
             <Toolbar id="toolbar">
-              <Tabs style={flex} value={this.state.agenda?0:(this.state.dateIndex+1)}>
+              <Tabs style={flex} value={this.state.dateIndex}>
                 <Tab label="Feb 21" onClick={this.setDate.bind(this, 0)} style={{"color":"black"}}/>
                 <Tab label="Feb 22" onClick={this.setDate.bind(this, 1)} style={{"color":"black"}}/>
                 <Tab label="Feb 23" onClick={this.setDate.bind(this, 2)} style={{"color":"black"}}/>                

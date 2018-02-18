@@ -7,6 +7,8 @@ class ScheduleService {
         this.listeners = [];
         this.data = {};
 
+        this.dateIndexCache = [];
+
         this.mapping = {
             "Agile": "A311",
             "Architecture": "A403",
@@ -34,6 +36,11 @@ class ScheduleService {
     }
 
     getScheduleForDateGroupedByTime(dateIndex) {
+
+        if (this.dateIndexCache[dateIndex]) {
+            return this.dateIndexCache[dateIndex];
+        }
+
         if (!this.data.days  || !this.data.days[dateIndex]) {
             return {};
         }
@@ -50,7 +57,15 @@ class ScheduleService {
                 });
             }
         });
-        return daySchedule;
+
+        const ordered = {};
+        Object.keys(daySchedule).sort().forEach(function(key) {
+          ordered[key] = daySchedule[key];
+        });
+
+        this.dateIndexCache[dateIndex] = ordered;
+
+        return this.dateIndexCache[dateIndex];
     }
 
     addListener(listener) {

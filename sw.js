@@ -17,7 +17,8 @@ var cacheName = 'devnexusPWA-final-1';
 var filesToCache = [
   '/',
   '/index.html',
-  'bundle.js',
+  '/bundle.js',
+  '/full_schedule.json',
   'https://fonts.googleapis.com/css?family=Roboto:300,400,500',
   '/styles/inline.css'
 ];

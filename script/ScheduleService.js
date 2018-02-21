@@ -61,7 +61,17 @@ class ScheduleService {
         const ordered = {};
         Object.keys(daySchedule).sort().forEach(function(key) {
           ordered[key] = daySchedule[key];
+          ordered[key].sort((left, right) => {
+              if ((left.room.startsWith("A4") && right.room.startsWith("A4")) ||
+                   (left.room.startsWith("A3") && right.room.startsWith("A3")) ) {
+                return left.room.localeCompare(right.room)
+                   } else {
+                    return right.room.localeCompare(left.room)
+                   }
+            })
         });
+
+
 
         this.dateIndexCache[dateIndex] = ordered;
 

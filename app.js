@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
-import purple from 'material-ui/colors/purple';
-import green from 'material-ui/colors/green';
-import Reboot from 'material-ui/Reboot';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import purple from '@material-ui/core/colors/purple';
+import green from '@material-ui/core/colors/green';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import AppShell from './script/AppShell';
 
 const theme = createMuiTheme({
+  typography: {
+    useNextVariants: true,
+  },
   palette: {
     primary: {
       light: purple[300],
@@ -29,7 +32,7 @@ if (process.browser) {
 ReactDOM.render(
   <MuiThemeProvider theme={theme}>
         {/* Reboot kickstart an elegant, consistent, and simple baseline to build upon. */}
-        <Reboot />
+        <CssBaseline />
         <AppShell />
       </MuiThemeProvider>,
   document.getElementById('app')

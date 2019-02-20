@@ -1,32 +1,19 @@
-import List, {
-  ListItem,
-  ListItemAvatar,
-  ListItemIcon,
-  ListItemSecondaryAction,
-  ListItemText,
-} from 'material-ui/List';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 import React from 'react';
-import Button from 'material-ui/Button';
-import Typography from 'material-ui/Typography';
-import AppBar from 'material-ui/AppBar';
-import { withStyles } from 'material-ui/styles';
+
+import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles';
 import ScheduleService from './ScheduleService';
-import Tabs, { Tab } from 'material-ui/Tabs';
-import Toolbar from 'material-ui/Toolbar';
-import Divider from 'material-ui/Divider';
-import Table, {
-  TableBody,
-  TableCell,
-  TableFooter,
-  TableHead,
-  TablePagination,
-  TableRow,
-  TableSortLabel,
-} from 'material-ui/Table';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Toolbar from '@material-ui/core/Toolbar';
+import Divider from '@material-ui/core/Divider';
 import ScheduleDetail from './ScheduleDetail'
 
 const styles = theme => ({});
-const Dates = [new Date(2018, 1, 21), new Date(2018, 1, 22),new Date(2018, 1, 23)]
+const Dates = [new Date(2019, 2, 6), new Date(2019, 2, 7),new Date(2019, 2, 8)]
 
 export class Schedule extends React.Component {
   constructor(props) {
@@ -156,16 +143,15 @@ export class Schedule extends React.Component {
   }
 
   render()  {
-    const { classes } = this.props;
     const flex = {
       flex:"1"
     }
     return <div>
             <Toolbar id="toolbar">
               <Tabs style={flex} value={this.state.dateIndex}>
-                <Tab label="Feb 21" onClick={this.setDate.bind(this, 0)} style={{"color":"black"}}/>
-                <Tab label="Feb 22" onClick={this.setDate.bind(this, 1)} style={{"color":"black"}}/>
-                <Tab label="Feb 23" onClick={this.setDate.bind(this, 2)} style={{"color":"black"}}/>                
+                <Tab label="Mar 6" onClick={this.setDate.bind(this, 0)} style={{"color":"black"}}/>
+                <Tab label="Mar 7" onClick={this.setDate.bind(this, 1)} style={{"color":"black"}}/>
+                <Tab label="Mar 8" onClick={this.setDate.bind(this, 2)} style={{"color":"black"}}/>                
               </Tabs>
             </Toolbar>
             <Divider/>

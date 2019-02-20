@@ -10,23 +10,21 @@ class ScheduleService {
         this.dateIndexCache = [];
 
         this.mapping = {
-            "Agile": "A311",
-            "Architecture": "A403",
-            "Core Cloud": "A305",
-            "Core Java": "A412",
-            "Frameworks": "A302",
-            "JavaScript": "A411",
-            "JVM Languages": "A402",
-            "Microservices": "A312",
-            "Mobile": "A405",
-            "Nighthacking": "Nighthacking Stage",
-            "Patterns & Design": "A315",
-            "Performance": "A301",
-            "Room 15": "A316",
-            "Security": "A313",
-            "Serverless and Cloud": "A404",
-            "Sidney Marcus": "Sidney Marcus",
-            "Web": "A314"
+            "2GM": "2GM",
+            "Agile":"Agile",
+            "Architecture":"Architecture",
+            "Cloud Infra":"Cloud Infra",
+            "Cloud Tech ":"Cloud Tech ",
+            "Core Java":"Core Java",
+            "Frameworks":"Frameworks",
+            "Java Platform":"Java Platform",
+            "JavaScript":"JavaScript",
+            "Practices":"Practices",
+            "Security":"Security",
+            "Tools - Techniques":"Tools - Techniques",
+            "Web":"Web",
+            "Foyer":"Foyer",
+            "Unobtanium":"Unobtanium"
         };
 
     }

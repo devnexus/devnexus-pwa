@@ -3,30 +3,17 @@
 	<head>
 		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
 		<meta charset="utf-8">
-		<title>DevNexus 2018 Schedule</title>
+		<title>DevNexus 2019 Schedule</title>
 		<meta name="theme-color" content="#519d55"/>
-		<link rel="manifest" href="/manifest.json">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>App Shell</title>
 		<link rel="stylesheet" type="text/css" href="styles/inline.css">
 	</head>
 	<body>
 		<div id="app" ></div>
-		<script src="bundle.js" async></script>
+		<script src="dist/bundle.js" async></script>
 		<noscript>
 			We're sorry, the DevNexus schedule site requires Javascript.
 		</noscript>
-		<script>
-			if ('serviceWorker' in navigator) {
-				navigator.serviceWorker.register('/sw.js').then(function(registration) {
-					// Registration was successful
-					console.log('ServiceWorker registration successful with scope: ', registration.scope);
-				}).catch(function(err) {
-					// registration failed :(
-					console.log('ServiceWorker registration failed: ', err);
-				});
-			}
-		</script>	
 	</body>
 </html>

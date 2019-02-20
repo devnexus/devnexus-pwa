@@ -1,19 +1,8 @@
 import React from 'react';
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import Typography from 'material-ui/Typography';
-import IconButton from 'material-ui/IconButton';
-import MenuIcon from 'material-ui-icons/Menu';
-import { withStyles } from 'material-ui/styles';
-import Drawer from 'material-ui/Drawer';
-import { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
-import InboxIcon from 'material-ui-icons/MoveToInbox';
-import DraftsIcon from 'material-ui-icons/Drafts';
-import StarIcon from 'material-ui-icons/Star';
-import SendIcon from 'material-ui-icons/Send';
-import MailIcon from 'material-ui-icons/Mail';
-import DeleteIcon from 'material-ui-icons/Delete';
-import ReportIcon from 'material-ui-icons/Report';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles';
 import Schedule from './Schedule'
 
 const styles = {
@@ -49,8 +38,8 @@ class AppShell extends React.Component {
     return <div>
        <AppBar position="static" color="default" id="appbar">
         <Toolbar>
-          <Typography variant="title" color="inherit">
-            DevNexus 2018 Schedule
+          <Typography variant="h6" color="inherit">
+            DevNexus 2019 Schedule
           </Typography>
         </Toolbar>
       </AppBar>

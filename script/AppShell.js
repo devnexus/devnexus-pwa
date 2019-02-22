@@ -4,18 +4,13 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Schedule from './Schedule'
+import SignInButton from './SignInButton'
+import FeedbackBell from './FeedbackBell'
 
 const styles = {
-  root: {
-    width: '100%',
-  },
-  flex: {
-    flex: 1,
-  },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20,
-  },
+  grow: {
+    flexGrow: 1,
+  }
 };
 
 const scheduleStyle = {
@@ -26,6 +21,8 @@ class AppShell extends React.Component {
 
   constructor(props) {
     super(props);
+    const { classes } = props;
+    this.classes = classes;
     this.state = {
       open: false
     };
@@ -33,12 +30,14 @@ class AppShell extends React.Component {
 
 
   render()  {
+    
     return <div>
        <AppBar position="static" color="default" id="appbar">
         <Toolbar>
-          <Typography variant="h6" color="inherit">
+          <Typography variant="h6" color="inherit" className={this.classes.grow}>
             DevNexus 2019 Schedule
           </Typography>
+          <FeedbackBell />
         </Toolbar>
       </AppBar>
       <Schedule style={scheduleStyle}/>

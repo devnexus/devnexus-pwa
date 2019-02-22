@@ -10,11 +10,16 @@ class FirebaseService {
             projectId: "devnexus-2019",
             storageBucket: "devnexus-2019.appspot.com",
             messagingSenderId: "87686152244"
-          };
+        };
 
-          firebase.initializeApp(config);
+        firebase.initializeApp(config);
+
+        this.auth = firebase.auth();
 
     }
+
+    
+
 }
 
 export default new FirebaseService();

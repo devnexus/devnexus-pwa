@@ -6,6 +6,7 @@ import Badge from '@material-ui/core/Badge';
 import FeedbackPanel from './FeedbackPanel'
 import Popper from '@material-ui/core/Popper';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import { get } from 'lodash';
 
 const styles = theme => ({
     margin: {
@@ -33,7 +34,17 @@ const styles = theme => ({
         }));
       };
 
-    clickAway() {
+    clickAway(event) {
+        console.log(event)
+
+        if (get(event, "srcElement.id") === "signInButton" || get(event, "srcElement.parentElement.id") === "signInButton") {
+            return;
+        }
+
+        if (get(event, "srcElement.id") === "signOutButton" || get(event, "srcElement.parentElement.id") === "signOutButton") {
+            return;
+        }
+
         this.setState(() => ({
             anchorEl: null,
             open: false
@@ -43,7 +54,6 @@ const styles = theme => ({
     render() {
        const { classes } = this.props;
        const { anchorEl, open } = this.state;
-       console.log(open);
 
        return <div>
                 <ClickAwayListener onClickAway={this.clickAway}>
@@ -52,7 +62,7 @@ const styles = theme => ({
                             <Notifications />
                         </Badge>
                     </IconButton>
-                    <Popper open={open} anchorEl={anchorEl} placement='bottom-end' >
+                    <Popper open={open} anchorEl={anchorEl} placement='bottom-end'>
                             <FeedbackPanel></FeedbackPanel>
                     </Popper>                    
                 </ClickAwayListener>

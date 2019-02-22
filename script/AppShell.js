@@ -33,8 +33,6 @@ class AppShell extends React.Component {
 
 
   render()  {
-    const { classes } = this.props;
-
     return <div>
        <AppBar position="static" color="default" id="appbar">
         <Toolbar>

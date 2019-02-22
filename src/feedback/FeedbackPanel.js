@@ -33,7 +33,7 @@ const styles = theme => ({
 
         this.signIn = this.signIn.bind(this);
         this.signOut = this.signOut.bind(this);
-
+        this.randomFeedback = this.randomFeedback.bind(this);
     }
 
     signIn() {
@@ -44,10 +44,24 @@ const styles = theme => ({
         FirebaseService.auth.signOut();
     }
 
+    randomFeedback() {
+        var titles = ["JUnit 5 the Next Step in Automated Testing for Java",
+                    "Computer Vision vs Machine Learning",
+                    "Guide to \"Reactive\" for Spring MVC",
+                    "Vue.js for Regular People",
+                    "JDK Releases: Migrate early, migrate often!"];
+                           
+        var index = Math.floor(Math.random() * titles.length);
+        
+        FirebaseService.submitFeedback(titles[index], Math.floor(Math.random() * 10));
+
+    }
+
     // Listen to the Firebase Auth state and set the local state.
     componentDidMount() {
         this.unregisterAuthObserver = FirebaseService.auth.onAuthStateChanged(
-            (user) => this.setState({user: user})
+            
+            (user) => {console.log(user);this.setState({user: user})}
         );
     }
     
@@ -62,6 +76,9 @@ const styles = theme => ({
        return <Paper className={classes.root}>
                 {user ?
                     (<div><Typography className={classes.typography}>{user.displayName}</Typography>
+                    <Button id="randomFeedback" variant="contained" color="primary" className={classes.button} onClick={() => {this.randomFeedback()}}>
+                            randomFeedback
+                            </Button>
                     <Button id="signOutButton" variant="contained" color="primary" className={classes.button} onClick={() => {this.signOut()}}>
                                 Sign-Out
                             </Button>

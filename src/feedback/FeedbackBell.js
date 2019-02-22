@@ -37,11 +37,7 @@ const styles = theme => ({
     clickAway(event) {
         console.log(event)
 
-        if (get(event, "srcElement.id") === "signInButton" || get(event, "srcElement.parentElement.id") === "signInButton") {
-            return;
-        }
-
-        if (get(event, "srcElement.id") === "signOutButton" || get(event, "srcElement.parentElement.id") === "signOutButton") {
+        if (get(event, "srcElement.id") !== "" || get(event, "srcElement.parentElement.id") !== "") {
             return;
         }
 

@@ -1,4 +1,6 @@
 import firebase from "firebase";
+// Required for side-effects
+require("firebase/firestore");
 
 class FirebaseService {
 
@@ -15,9 +17,44 @@ class FirebaseService {
         firebase.initializeApp(config);
 
         this.auth = firebase.auth();
+        this.db = firebase.firestore();
+        this.db.enablePersistence()
+            .catch(function(err) {
+               console.log(err)
+            });
+
+        this.auth.onAuthStateChanged(
+            
+            (user) => {
+                console.log("User state changed in service");
+                if (user) {
+                    this.db.collection("users").doc(user.uid).set(
+                        {
+                            displayName:user.displayName,
+                            email: user.email
+                        }, { merge: true }
+                    ).then(()=>console.log("User info updated in firestore"))
+                     .catch((err)=> console.log(err));
+                }
+            }
+        );
+
+        this.submitFeedback = this.submitFeedback.bind(this);
 
     }
 
+    submitFeedback(trackTitle, rating) {
+        var user = firebase.auth().currentUser;
+        if (user) {
+            this.db.collection("users").doc(user.uid).update(
+                new firebase.firestore.FieldPath("feedback", trackTitle),
+                rating
+            ).then(()=>console.log("User info updated in firestore"))
+            .catch((err)=> console.log(err));
+        } else {
+            console.log("Do not add feedback if the user is not logged in.")
+        }
+    }
     
 
 }

@@ -10,21 +10,22 @@ class ScheduleService {
         this.dateIndexCache = [];
 
         this.mapping = {
-            "2GM": "2GM",
-            "Agile":"Agile",
-            "Architecture":"Architecture",
-            "Cloud Infra":"Cloud Infra",
-            "Cloud Tech ":"Cloud Tech ",
-            "Core Java":"Core Java",
-            "Frameworks":"Frameworks",
-            "Java Platform":"Java Platform",
-            "JavaScript":"JavaScript",
-            "Practices":"Practices",
-            "Security":"Security",
-            "Tools - Techniques":"Tools - Techniques",
-            "Web":"Web",
+            "2GM": "115",
+            "Agile":"105",
+            "Architecture":"Ballroom A",
+            "Cloud Infra":"Ballroom B",
+            "Cloud Tech ":"Ballroom D",
+            "Core Java":"104",
+            "Frameworks":"Ballroom F",
+            "Java Platform":"Exhibition Hall B",
+            "JavaScript":"Ballroom E",
+            "Practices":"103",
+            "Security":"Ballroom C",
+            "Tools - Techniques":"106",
+            "Web":"102",
             "Foyer":"Foyer",
-            "Unobtanium":"Unobtanium"
+            "Unobtanium":"114",
+            "Break":"Sponsor Lounge"
         };
 
     }

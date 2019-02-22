@@ -13,7 +13,7 @@ import Divider from '@material-ui/core/Divider';
 import ScheduleDetail from './ScheduleDetail'
 
 const styles = theme => ({});
-const Dates = [new Date(2019, 2, 7),new Date(2019, 2, 8)]
+const Dates = [new Date(2019, 2, 6), new Date(2019, 2, 7),new Date(2019, 2, 8)]
 
 export class Schedule extends React.Component {
   constructor(props) {
@@ -63,7 +63,10 @@ export class Schedule extends React.Component {
   componentDidMount() {
     ScheduleService.addListener(this.handleUpdate)
     window.addEventListener('resize', this.updateDimensions)
-
+    this.setState({
+      date: Dates[0],
+      dateIndex: 0,
+    })
   }
 
   componentWillUnmount() {
@@ -149,6 +152,7 @@ export class Schedule extends React.Component {
     return <div>
             <Toolbar id="toolbar">
               <Tabs style={flex} value={this.state.dateIndex}>
+                <Tab label="Mar 6" onClick={this.setDate.bind(this, 0)} style={{"color":"black"}}/>
                 <Tab label="Mar 7" onClick={this.setDate.bind(this, 1)} style={{"color":"black"}}/>
                 <Tab label="Mar 8" onClick={this.setDate.bind(this, 2)} style={{"color":"black"}}/>                
               </Tabs>

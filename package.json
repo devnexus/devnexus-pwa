@@ -22,11 +22,14 @@
     "babel-loader": "^8.0.5",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
+    "static-server": "^2.2.1",
     "webpack": "^4.29.5",
     "webpack-cli": "^3.2.3"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack --watch",
+    "serve": "static-server",
     "build": "webpack"
   },
   "repository": {

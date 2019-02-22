@@ -4,8 +4,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Schedule from './Schedule'
-import SignInButton from './SignInButton'
-import FeedbackBell from './FeedbackBell'
+import FeedbackBell from './feedback/FeedbackBell'
 
 const styles = {
   grow: {

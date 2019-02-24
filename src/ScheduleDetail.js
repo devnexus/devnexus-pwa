@@ -1,7 +1,6 @@
 import React from 'react';
-import Typography from '@material-ui/core/Typography';
+import {Dialog, Typography, Button } from '@material-ui/core';
 import PropTypes from 'prop-types';
-import Dialog from '@material-ui/core/Dialog';
 import withMobileDialog from '@material-ui/core/withMobileDialog';
 import FeedbackPanel from './feedback/FeedbackPanel';
 
@@ -14,8 +13,13 @@ export class ScheduleDetail extends React.Component {
     };
     this.handleClickOpen = this.handleClickOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
+    this.jumpToSubmitFeedback = this.jumpToSubmitFeedback.bind(this);
   }
   
+  jumpToSubmitFeedback() {
+    console.log(this.feedback);
+    this.feedback.focusComment();
+  }
 
   handleClickOpen(item) {
     window.location.hash = "#open";
@@ -67,12 +71,18 @@ export class ScheduleDetail extends React.Component {
               </div>
               <div className="row" key={this.state.item.id + "1"}>
                 <div className="col-sm-10 col-sm-offset-1 ">
-                  <Typography className="presentation-header" >
-                    Abstract
-                  </Typography>
+                  <div style={{display: 'inline-flex', width:'100%',backgroundColor:'#f6921e', color:'#fff'}}  className="presentation-header">
+                    <Typography style={{flexGrow:'1'}}  className="presentation-header" >
+                      Abstract
+                    </Typography>
+                    <Button  onClick={()=>{this.jumpToSubmitFeedback()}} style={{color:'#fff'}} disableRipple={true}>
+                        Submit Feedback
+                      </Button>
+                  </div>
                   <Typography className="biography-body" >
                     {this.state.item.abstract}
                   </Typography>
+                  
                 </div>
               </div>
               {this.state.item.persons?this.state.item.persons.map((speaker, i) => {
@@ -81,7 +91,7 @@ export class ScheduleDetail extends React.Component {
                           <Typography className="biography-body" >{speaker.abstract}</Typography>
                 </div>);
               }):<div key={this.state.item.id + "1" + "1"}/> }
-              <FeedbackPanel title={ this.state.item.title } />
+              <FeedbackPanel onRef={(feedback)=> {this.feedback = feedback;}} title={ this.state.item.title } />
             </div>  
         </Dialog>
       </div>

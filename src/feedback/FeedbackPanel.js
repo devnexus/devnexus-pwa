@@ -46,23 +46,28 @@ const styles = theme => ({
         this.state = {
             user: FirebaseService.auth.currentUser,
             comment: null,
-            score: 3
+            score: 0
         }
 
         this.handleChange = this.handleChange.bind(this);
         this.feedback = this.feedback.bind(this);
+        this.focusComment = this.focusComment.bind(this);
+    }
+
+    focusComment() {
+        console.log(this.comment)
+        this.comment.focus();
     }
 
     feedback() {
         const { title } = this.props;
-                           
-        var index = Math.floor(Math.random() * 5) + 1;
         FirebaseService.submitFeedback(title, this.state.comment, this.state.score);
 
     }
 
     // Listen to the Firebase Auth state and set the local state.
     componentDidMount() {
+        this.props.onRef(this)
         this.unregisterAuthObserver = FirebaseService.auth.onAuthStateChanged(
             
             (user) => {console.log(user);this.setState({user: user})}
@@ -71,6 +76,7 @@ const styles = theme => ({
     
     // Make sure we un-register Firebase observers when the component unmounts.
     componentWillUnmount() {
+        this.props.onRef(undefined)
         this.unregisterAuthObserver();
     }
 
@@ -81,7 +87,7 @@ const styles = theme => ({
     render() {
         const { classes } = this.props;
        const { user } = this.state;
-console.log(this.state)
+
        return ( user ? ( <div className="row">
                             <div className="col-sm-10 col-sm-offset-1 " >
                                 <Typography className="feedback-header" >
@@ -90,8 +96,10 @@ console.log(this.state)
                                 <form className={classes.container} noValidate autoComplete="off">
 
                                     <TextField  
+                                        id="comment"
                                         value={this.state.comment} 
                                         rows="4" 
+                                        inputRef={(input) => { this.comment = input; }} 
                                         className={classes.textField}
                                         maxRows="4" 
                                         onChange={(event)=>(this.handleChange('comment', event.target.value))}
@@ -114,7 +122,7 @@ console.log(this.state)
                                                 <Radio className={classes.radio} checkedIcon={this.state.score >=1?<Star color="primary"/>:<StarBorder/>} icon={this.state.score >=5?<Star  color="primary"/>:<StarBorder/>} value={5}/>
                                             </RadioGroup>
                                         </div>
-                                        <Button id="randomFeedback" variant="contained" color="primary" className={classes.button} onClick={() => {this.feedback()}}>
+                                        <Button disabled={this.state.score > 0?false:true} id="randomFeedback" variant="contained" color="primary" className={classes.button} onClick={() => {this.feedback()}}>
                                             Submit
                                         </Button>
                                 </form>
@@ -123,15 +131,6 @@ console.log(this.state)
                     : 
                         <div/>);
        
-       /*<Paper className={classes.root}>
-                {user ?
-                    (<div><Typography className={classes.typography}>{user.displayName}</Typography>
-                    <Button id="randomFeedback" variant="contained" color="primary" className={classes.button} onClick={() => {this.randomFeedback()}}>
-                            randomFeedback
-                            </Button>
-                    </div>)
-                        : null}
-              </Paper>;*/
     }
 }
 

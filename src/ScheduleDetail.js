@@ -83,8 +83,6 @@ export class ScheduleDetail extends React.Component {
               }):<div key={this.state.item.id + "1" + "1"}/> }
               <FeedbackPanel title={ this.state.item.title } />
             </div>  
-          
-
         </Dialog>
       </div>
     );

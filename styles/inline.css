@@ -123,6 +123,18 @@ div p.biography-body {
     font-size: 20px;
 }
 
+div p.feedback-header {
+    background-color: #9c27b0;
+        padding: 30px 60px;
+        margin: 0;
+        color: #fff;
+}
+
+div p.feedback-body {
+    margin: 40px;
+    font-size: 20px;
+}
+
 div p.biography-header {
     background-color: #6c9c31;
     padding: 30px 60px;

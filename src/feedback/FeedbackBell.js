@@ -14,7 +14,7 @@ const styles = theme => ({
     }
   });
 
- class FeedbackBell extends React.Component {
+ class FeedbackSignIn extends React.Component {
 
     state = {
         anchorEl: null,
@@ -68,4 +68,4 @@ const styles = theme => ({
 
 }
 
-export default withStyles(styles)(FeedbackBell);
+export default withStyles(styles)(FeedbackSignIn);

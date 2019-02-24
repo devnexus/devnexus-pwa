@@ -31,29 +31,14 @@ const styles = theme => ({
             user: FirebaseService.auth.currentUser
         }
 
-        this.signIn = this.signIn.bind(this);
-        this.signOut = this.signOut.bind(this);
         this.randomFeedback = this.randomFeedback.bind(this);
     }
 
-    signIn() {
-        FirebaseService.auth.signInWithRedirect(this.googleAuthProvider);
-    }
-
-    signOut() {
-        FirebaseService.auth.signOut();
-    }
-
     randomFeedback() {
-        var titles = ["JUnit 5 the Next Step in Automated Testing for Java",
-                    "Computer Vision vs Machine Learning",
-                    "Guide to \"Reactive\" for Spring MVC",
-                    "Vue.js for Regular People",
-                    "JDK Releases: Migrate early, migrate often!"];
+        const { title } = this.props;
                            
-        var index = Math.floor(Math.random() * titles.length);
-        
-        FirebaseService.submitFeedback(titles[index], Math.floor(Math.random() * 10));
+        var index = Math.floor(Math.random() * 5) + 1;
+        FirebaseService.submitFeedback(title, "Test feedback", index);
 
     }
 
@@ -79,34 +64,8 @@ const styles = theme => ({
                     <Button id="randomFeedback" variant="contained" color="primary" className={classes.button} onClick={() => {this.randomFeedback()}}>
                             randomFeedback
                             </Button>
-                    <Button id="signOutButton" variant="contained" color="primary" className={classes.button} onClick={() => {this.signOut()}}>
-                                Sign-Out
-                            </Button>
                     </div>)
-                        : 
-                    (<div>
-                        <div>
-                            <Typography className={classes.typography}>
-                                This year at DevNexus to register to win a door prize you have to give us your feedback on sessions.  
-                            </Typography>                            
-                        </div>
-                        <div>
-                            <Typography className={classes.typography}>    
-                                To verify that you have rated a session we need you to sign into our site.  
-                            </Typography>                                                        
-                        </div>
-                        <div>
-                            <Typography className={classes.typography}>    
-                                If you do not wish to be registered feel free to continue enjoying the conference.
-                            </Typography>
-                        </div>
-                        <div>
-                            <Button id="signInButton" variant="contained" color="primary" className={classes.button} onClick={() => {this.signIn()}}>
-                                Sign-In
-                            </Button>
-                        </div>
-                      </div>)
-                }
+                        : null}
               </Paper>;
     }
 }

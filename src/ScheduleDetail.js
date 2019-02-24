@@ -3,7 +3,7 @@ import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import Dialog from '@material-ui/core/Dialog';
 import withMobileDialog from '@material-ui/core/withMobileDialog';
-
+import FeedbackPanel from './feedback/FeedbackPanel';
 
 export class ScheduleDetail extends React.Component {
   constructor(props) {
@@ -81,6 +81,7 @@ export class ScheduleDetail extends React.Component {
                           <Typography className="biography-body" >{speaker.abstract}</Typography>
                 </div>);
               }):<div key={this.state.item.id + "1" + "1"}/> }
+              <FeedbackPanel title={ this.state.item.title } />
             </div>  
           
 

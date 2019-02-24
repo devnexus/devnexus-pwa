@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import Notifications from '@material-ui/icons/Notifications';
 import Badge from '@material-ui/core/Badge';
-import FeedbackPanel from './FeedbackPanel'
+import FeedbackPanel from './FeedbackPanel_old'
 import Popper from '@material-ui/core/Popper';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import { get } from 'lodash';

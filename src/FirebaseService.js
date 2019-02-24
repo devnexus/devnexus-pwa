@@ -38,17 +38,18 @@ class FirebaseService {
                 }
             }
         );
-
         this.submitFeedback = this.submitFeedback.bind(this);
-
     }
 
-    submitFeedback(trackTitle, rating) {
+    submitFeedback(trackTitle, feedback, rating) {
         var user = firebase.auth().currentUser;
         if (user) {
             this.db.collection("users").doc(user.uid).update(
                 new firebase.firestore.FieldPath("feedback", trackTitle),
-                rating
+                {
+                    comment: feedback,
+                    score: rating
+                }
             ).then(()=>console.log("User info updated in firestore"))
             .catch((err)=> console.log(err));
         } else {

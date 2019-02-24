@@ -35,7 +35,6 @@ class ScheduleService {
     }
 
     getScheduleForDateGroupedByTime(dateIndex) {
-
         if (this.dateIndexCache[dateIndex]) {
             return this.dateIndexCache[dateIndex];
         }
@@ -73,7 +72,6 @@ class ScheduleService {
 
 
         this.dateIndexCache[dateIndex] = ordered;
-
         return this.dateIndexCache[dateIndex];
     }
 
@@ -127,6 +125,8 @@ class ScheduleService {
             return response.json();
         }).then((data) => {
             this.data = data.schedule.conference;
+            console.log("updated")
+            console.log(this.data)
             this.dataUpdated();
         })
         .catch((err) => {

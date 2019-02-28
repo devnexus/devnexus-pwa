@@ -61,7 +61,7 @@ const styles = theme => ({
     componentDidMount() {
         this.unregisterAuthObserver = FirebaseService.auth.onAuthStateChanged(
             
-            (user) => {console.log(user);this.setState({user: user})}
+            (user) => {this.setState({user: user})}
         );
     }
     

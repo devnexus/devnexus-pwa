@@ -28,7 +28,6 @@ export class Schedule extends React.Component {
     
     this.handleUpdate = this.handleUpdate.bind(this);
     this.doUpdate = this.doUpdate.bind(this);
-    this.allRooms = this.allRooms.bind(this);
     this.setDate = this.setDate.bind(this);
     this.scheduleTable = this.scheduleTable.bind(this);
     this.updateDimensions = this.updateDimensions.bind(this);
@@ -37,7 +36,6 @@ export class Schedule extends React.Component {
   }
 
   displayDetails(dateIndex, roomName, roomIndex) {
-    console.log(dateIndex + "," + roomName + "," +  roomIndex);
     var scheduleItem = ScheduleService.findScheduleItem(dateIndex, roomName, roomIndex);
     this.dialog.handleClickOpen(scheduleItem);
   }
@@ -85,10 +83,6 @@ export class Schedule extends React.Component {
 
   doUpdate() {
     ScheduleService.scheduleUpdate();
-  }
-
-  allRooms() {
-    console.log(ScheduleService.allRooms());
   }
 
   handleUpdate(data) {

@@ -3,6 +3,7 @@ import {Dialog, Typography, Button } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import withMobileDialog from '@material-ui/core/withMobileDialog';
 import FeedbackPanel from './feedback/FeedbackPanel';
+import FirebaseService from "./FirebaseService"
 
 export class ScheduleDetail extends React.Component {
   constructor(props) {
@@ -11,14 +12,17 @@ export class ScheduleDetail extends React.Component {
       open: false,
       item: {}
     };
+
+    this.modalRef = React.createRef();
+
     this.handleClickOpen = this.handleClickOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.jumpToSubmitFeedback = this.jumpToSubmitFeedback.bind(this);
   }
   
   jumpToSubmitFeedback() {
-    console.log(this.feedback);
     this.feedback.focusComment();
+    document.getElementById('speaker').parentNode.scrollTop = 10000;
   }
 
   handleClickOpen(item) {
@@ -34,14 +38,25 @@ export class ScheduleDetail extends React.Component {
   componentDidMount() {
     this.props.onRef(this)
     window.addEventListener("hashchange", () => { if(window.location.hash === "") {this.handleClose()} }, false);
+    this.unregisterAuthObserver = FirebaseService.auth.onAuthStateChanged(       
+      (user) => {this.setState({user: user})}
+    );
   }
 
+    // Make sure we un-register Firebase observers when the component unmounts.
+    componentWillUnmount() {
+        this.props.onRef(undefined)
+        this.unregisterAuthObserver();
+    }
+  
   render() {
     const { fullScreen } = this.props;
+    const { user } = this.state;
 
     return (
-      <div>
+      <div ref={this.modalRef}>
         <Dialog
+          
           fullScreen={fullScreen}
           open={this.state.open}
           onClose={this.handleClose}
@@ -75,9 +90,11 @@ export class ScheduleDetail extends React.Component {
                     <Typography style={{flexGrow:'1'}}  className="presentation-header" >
                       Abstract
                     </Typography>
-                    <Button  onClick={()=>{this.jumpToSubmitFeedback()}} style={{color:'#fff'}} disableRipple={true}>
+                    { user ? 
+                    <Button onClick={()=>{this.jumpToSubmitFeedback()}} style={{color:'#fff'}} disableRipple={true}>
                         Submit Feedback
                       </Button>
+                      : <div/>}
                   </div>
                   <Typography className="biography-body" >
                     {this.state.item.abstract}
@@ -91,6 +108,7 @@ export class ScheduleDetail extends React.Component {
                           <Typography className="biography-body" >{speaker.abstract}</Typography>
                 </div>);
               }):<div key={this.state.item.id + "1" + "1"}/> }
+              
               <FeedbackPanel onRef={(feedback)=> {this.feedback = feedback;}} title={ this.state.item.title } />
             </div>  
         </Dialog>

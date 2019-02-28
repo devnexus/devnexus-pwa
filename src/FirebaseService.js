@@ -26,14 +26,13 @@ class FirebaseService {
         this.auth.onAuthStateChanged(
             
             (user) => {
-                console.log("User state changed in service");
                 if (user) {
                     this.db.collection("users").doc(user.uid).set(
                         {
                             displayName:user.displayName,
                             email: user.email
                         }, { merge: true }
-                    ).then(()=>console.log("User info updated in firestore"))
+                    ).then(()=>{})
                      .catch((err)=> console.log(err));
                 }
             }
@@ -50,7 +49,7 @@ class FirebaseService {
                     comment: feedback,
                     score: rating
                 }
-            ).then(()=>console.log("User info updated in firestore"))
+            ).then(()=>{})
             .catch((err)=> console.log(err));
         } else {
             console.log("Do not add feedback if the user is not logged in.")

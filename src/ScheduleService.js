@@ -125,8 +125,6 @@ class ScheduleService {
             return response.json();
         }).then((data) => {
             this.data = data.schedule.conference;
-            console.log("updated")
-            console.log(this.data)
             this.dataUpdated();
         })
         .catch((err) => {

@@ -35,8 +35,6 @@ const styles = theme => ({
       };
 
     clickAway(event) {
-        console.log(event)
-
         if (get(event, "srcElement.id") !== "" || get(event, "srcElement.parentElement.id") !== "") {
             return;
         }

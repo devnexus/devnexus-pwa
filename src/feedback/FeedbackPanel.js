@@ -48,16 +48,14 @@ const styles = theme => ({
             comment: null,
             score: 0
         }
-
         this.handleChange = this.handleChange.bind(this);
         this.feedback = this.feedback.bind(this);
         this.focusComment = this.focusComment.bind(this);
     }
 
     focusComment() {
-        console.log(this.comment)
         this.comment.focus();
-    }
+      }
 
     feedback() {
         const { title } = this.props;
@@ -70,7 +68,7 @@ const styles = theme => ({
         this.props.onRef(this)
         this.unregisterAuthObserver = FirebaseService.auth.onAuthStateChanged(
             
-            (user) => {console.log(user);this.setState({user: user})}
+            (user) => {this.setState({user: user})}
         );
     }
     
@@ -122,7 +120,7 @@ const styles = theme => ({
                                                 <Radio className={classes.radio} checkedIcon={this.state.score >=1?<Star color="primary"/>:<StarBorder/>} icon={this.state.score >=5?<Star  color="primary"/>:<StarBorder/>} value={5}/>
                                             </RadioGroup>
                                         </div>
-                                        <Button disabled={this.state.score > 0?false:true} id="randomFeedback" variant="contained" color="primary" className={classes.button} onClick={() => {this.feedback()}}>
+                                        <Button  disabled={this.state.score > 0?false:true} id="randomFeedback" variant="contained" color="primary" className={classes.button} onClick={() => {this.feedback()}}>
                                             Submit
                                         </Button>
                                 </form>

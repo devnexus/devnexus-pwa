@@ -2,17 +2,19 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import React from 'react';
+import {  createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 
-import Typography from '@material-ui/core/Typography';
+import { Divider, Toolbar, Typography, Chip, Avatar} from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import ScheduleService from './ScheduleService';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Toolbar from '@material-ui/core/Toolbar';
-import Divider from '@material-ui/core/Divider';
 import ScheduleDetail from './ScheduleDetail'
 
+
 const styles = theme => ({});
+const theme = createMuiTheme();
+
 const Dates = [new Date(2019, 2, 6), new Date(2019, 2, 7),new Date(2019, 2, 8)]
 
 export class Schedule extends React.Component {
@@ -32,6 +34,7 @@ export class Schedule extends React.Component {
     this.scheduleTable = this.scheduleTable.bind(this);
     this.updateDimensions = this.updateDimensions.bind(this);
     this.displayDetails = this.displayDetails.bind(this);
+    this.getColor = this.getColor.bind(this);
     window.location.hash = "";
   }
 
@@ -80,6 +83,68 @@ export class Schedule extends React.Component {
   document.getElementById('listBody').scrollTop = 0;
  }
 
+ getColor(trackName) {
+   const colors = {
+    "2GM": {
+      "color": "#0d86e2",
+      "room": "115"
+    },
+    "Agile": {
+      "color": "#0d86e2",
+      "room": "105"
+    },
+    "Architecture": {
+      "room": "Ballroom A",
+      "color": "#a84617"
+    },
+    "Cloud Infra": {
+      "room": "Ballroom B",
+      "color": "#6328E7"
+    },
+    "Cloud Tech ": {
+      "room": "Ballroom D",
+      "color": "#8b2246"
+    },
+    "Core Java": {
+      "room": "104",
+      "color": "#8bbc0f"
+    },
+    "Frameworks": {
+      "room": "Ballroom F",
+      "color": "#5b903f"
+    },
+    "Java Platform": {
+      "room": "Exhibition Hall D",
+      "color": "#f6921e"
+    },
+    "JavaScript": {
+      "room": "Ballroom E",
+      "color": "#127e9c"
+    },
+    "Practices": {
+      "room": "103",
+      "color": "#4331e2"
+    },
+    "Security": {
+      "room": "Ballroom C",
+      "color": "#2a2d7c"
+    },
+    "Tools - Techniques": {
+      "room": "106",
+      "color": "#FA7713"
+    },
+    "Web": {
+      "room": "102",
+      "color": "#015351"
+    },
+  
+    "Unobtanium": {
+      "room": "114",
+      "color": "#1668ba"
+    }
+  };
+   return colors[trackName]?colors[trackName].color:"#ed1e24";
+ }
 
   doUpdate() {
     ScheduleService.scheduleUpdate();
@@ -112,14 +177,39 @@ export class Schedule extends React.Component {
                   <Typography className="scheduleEventTime" style={{"fontSize":"24px"}}>{time}</Typography>
                   <List className="scheduleEventsColumn" style={{"paddingTop":"0"}}>
                     {
-                      scheduleItems.map((item) => (
-                        <ListItem className="scheduleEventListItem" key={scheduleItems.indexOf(item)} button style={{"backgroundColor":"white"}} onClick={()=>{this.displayDetails(...item.detailsArgs)}} >
+                      scheduleItems.map((item) => {
+                        var scheduleItem = ScheduleService.findScheduleItem(...item.detailsArgs);
+                        return <ListItem className="scheduleEventListItem" key={scheduleItems.indexOf(item)} button style={{"backgroundColor":"white"}} onClick={()=>{this.displayDetails(...item.detailsArgs)}} >
+                          
                           <ListItemText
                               primary={item.title}
-                              secondary={item.track?(item.track + " | " + item.room):"Joystick Gamebar"}
+                              secondary={
+                                <React.Fragment>
+                                  <MuiThemeProvider theme={
+                                    { ...theme,
+                                      palette: {
+                                        ...theme.palette,
+                                        primary: {
+                                          main: this.getColor(item.track)
+                                        }
+                                      }
+                                    }
+                                  }>
+                                    <Chip label={(item.track + " | " + item.room)} variant="outlined"  color="primary"/>
+                                  </MuiThemeProvider>
+                                  <div style={{display: 'inline-flex', paddingLeft:'1em'}}>
+                                  {scheduleItem.persons?scheduleItem.persons.map((speaker, i) => {
+                                    return (<div key={scheduleItem.id + "2" + i + "3"} style={{paddingRight:'1em'}}>
+                                              {speaker.full_public_name}
+                                            </div>);
+                                  }):<div key={scheduleItem.id + "1" + "1"}/> }
+                                  </div>
+                                  
+                              </React.Fragment>
+                              }
                           />
                         </ListItem>
-                      ))
+                      })
                     }
                   </List>
               </div>);

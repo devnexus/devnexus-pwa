@@ -97,11 +97,11 @@ export class Schedule extends React.Component {
       "room": "Ballroom A",
       "color": "#a84617"
     },
-    "Cloud Infra": {
+    "Cloud Infrastructure (Microservices and Serverless)": {
       "room": "Ballroom B",
       "color": "#6328E7"
     },
-    "Cloud Tech ": {
+    "Cloud Technology": {
       "room": "Ballroom D",
       "color": "#8b2246"
     },
@@ -121,7 +121,7 @@ export class Schedule extends React.Component {
       "room": "Ballroom E",
       "color": "#127e9c"
     },
-    "Practices": {
+    "Practices and other tech": {
       "room": "103",
       "color": "#4331e2"
     },
@@ -129,7 +129,7 @@ export class Schedule extends React.Component {
       "room": "Ballroom C",
       "color": "#2a2d7c"
     },
-    "Tools - Techniques": {
+    "Tools and Techniques": {
       "room": "106",
       "color": "#FA7713"
     },
@@ -195,7 +195,8 @@ export class Schedule extends React.Component {
                                       }
                                     }
                                   }>
-                                    <Chip label={(item.track + " | " + item.room)} variant="outlined"  color="primary"/>
+                                  
+                                    <Chip label={(item.track === "Cloud Infrastructure (Microservices and Serverless)"?"Cloud Infrastructure":item.track + " | " + item.room)} variant="outlined"  color="primary"/>
                                   </MuiThemeProvider>
                                   <div style={{display: 'inline-flex', paddingLeft:'1em'}}>
                                   {scheduleItem.persons?scheduleItem.persons.map((speaker, i) => {

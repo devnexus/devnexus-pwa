@@ -2,6 +2,7 @@ import React from 'react';
 import {Dialog, Typography, Button } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import withMobileDialog from '@material-ui/core/withMobileDialog';
+import { ArrowBack } from '@material-ui/icons';
 import FeedbackPanel from './feedback/FeedbackPanel';
 import FirebaseService from "./FirebaseService"
 
@@ -12,9 +13,6 @@ export class ScheduleDetail extends React.Component {
       open: false,
       item: {}
     };
-
-    this.modalRef = React.createRef();
-
     this.handleClickOpen = this.handleClickOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.jumpToSubmitFeedback = this.jumpToSubmitFeedback.bind(this);
@@ -32,12 +30,15 @@ export class ScheduleDetail extends React.Component {
 
   handleClose() {
     window.location.hash = "";
-    this.setState({ open: false,item:{} });
+    this.setState({ open: false });
   };
+
 
   componentDidMount() {
     this.props.onRef(this)
+  
     window.addEventListener("hashchange", () => { if(window.location.hash === "") {this.handleClose()} }, false);
+    window.addEventListener("optimizedResize", this.jumpToSubmitFeedback );
     this.unregisterAuthObserver = FirebaseService.auth.onAuthStateChanged(       
       (user) => {this.setState({user: user})}
     );
@@ -47,6 +48,8 @@ export class ScheduleDetail extends React.Component {
     componentWillUnmount() {
         this.props.onRef(undefined)
         this.unregisterAuthObserver();
+        window.removeEventListener("optimizedResize", this.jumpToSubmitFeedback)
+        this.setState({item:{}});
     }
   
   render() {
@@ -54,9 +57,8 @@ export class ScheduleDetail extends React.Component {
     const { user } = this.state;
 
     return (
-      <div ref={this.modalRef}>
+      <div >
         <Dialog
-          
           fullScreen={fullScreen}
           open={this.state.open}
           onClose={this.handleClose}
@@ -67,15 +69,26 @@ export class ScheduleDetail extends React.Component {
               <div className="row" key={this.state.item.id}>
                 <div className="col-sm-10 col-sm-offset-1">
                   <div className="speaker-member row "
-                    style={{padding:"25px",
-                    background: "linear-gradient(-90deg, #6c7070, #6c7070) repeat-y", backgroundSize: "10px 10px",
+                    style={{paddingLeft:"45px",paddingTop:"10px",paddingBottom:"20px",paddingRight:"10px",
+                    background: "linear-gradient(-90deg, #6c7070, #6c7070) repeat-y", backgroundSize: "40px 10px",
                     backgroundColor: "#282828"}}>
+                    <ArrowBack 
+                      style={{
+                        position:"absolute",
+                        width: "26px",
+                        height: "26px",
+                        left: "8px",
+                        color: "white",
+                        top: "15px"
+                      }}
+                      onClick={this.handleClose} 
+                    />
                     <Typography style={{color: "#fff",fontSize: "26px",fontWeight: "700"}}>
                       {this.state.item.title}
                     </Typography>
                       <div style={{backgroundColor:"#282828"}}>
                           <Typography style={{color: "#fff",fontWeight: "700", display:"inline"}}>
-                            Track:
+                            Track:&nbsp;
                           </Typography>
                           <Typography style={{color: "#fff", display:"inline"}}>
                             { this.state.item.track }

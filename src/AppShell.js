@@ -4,7 +4,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Schedule from './Schedule'
-import FeedbackSignIn from './feedback/FeedbackBell'
+import FeedbackSignIn from './feedback/FeedbackSignIn'
+import AccountDialog from './feedback/AccountDialog'
 
 const styles = {
   grow: {
@@ -16,6 +17,24 @@ const scheduleStyle = {
   ['z-index']:-10
 }
 
+var throttle = function(type, name, obj) {
+  obj = obj || window;
+  var running = false;
+  var func = function() {
+    if (running) { return; }
+    running = true;
+    requestAnimationFrame(function() {
+      obj.dispatchEvent(new CustomEvent(name));
+      running = false;
+    });
+  };
+  obj.addEventListener(type, func);
+};
+
+/* init - you can init any event */
+throttle("resize", "optimizedResize");
+
+
 class AppShell extends React.Component {
 
   constructor(props) {
@@ -25,8 +44,19 @@ class AppShell extends React.Component {
     this.state = {
       open: false
     };
+    this.accountDialog =  React.createRef();
+
   }
 
+  componentDidMount(){
+    let visited = localStorage["alreadyVisited"];
+    if(visited) {
+      this.accountDialog.current.handleClose();
+    } else {
+         localStorage["alreadyVisited"] = true;
+         this.accountDialog.current.handleOpen();
+    }
+  }
 
   render()  {
     
@@ -36,10 +66,11 @@ class AppShell extends React.Component {
           <Typography variant="h6" color="inherit" className={this.classes.grow}>
             DevNexus 2019 Schedule
           </Typography>
-          <FeedbackSignIn />
+          <FeedbackSignIn accountDialog={this.accountDialog}/>
         </Toolbar>
       </AppBar>
       <Schedule style={scheduleStyle}/>
+      <AccountDialog ref={this.accountDialog}/>
     </div>
   }
 

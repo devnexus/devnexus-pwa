@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "description": "Devnexus 2018 Schedule app",
   "dependencies": {
+    "@aerogear/app": "^2.2.0",
+    "@aerogear/auth": "^2.2.0",
+    "@aerogear/voyager-client": "^2.2.0",
     "@material-ui/core": "^3.9.2",
     "@material-ui/icons": "^3.0.2",
     "@material-ui/styles": "^3.0.0-alpha.10",
-    "firebase": "^5.8.5",
     "lodash": "^4.17.11",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",

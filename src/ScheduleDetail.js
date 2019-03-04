@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import withMobileDialog from '@material-ui/core/withMobileDialog';
 import { ArrowBack } from '@material-ui/icons';
 import FeedbackPanel from './feedback/FeedbackPanel';
-import FirebaseService from "./FirebaseService"
+import AeroGearService from './AeroGearService'
 
 export class ScheduleDetail extends React.Component {
   constructor(props) {
@@ -41,15 +41,14 @@ export class ScheduleDetail extends React.Component {
   
     window.addEventListener("hashchange", () => { if(window.location.hash === "") {this.handleClose()} }, false);
     window.addEventListener("optimizedResize", this.jumpToSubmitFeedback );
-    this.unregisterAuthObserver = FirebaseService.auth.onAuthStateChanged(       
-      (user) => {this.setState({user: user})}
-    );
+    AeroGearService.auth.loadUserProfile().then(user => {
+      console.log(user);
+      this.setState({user:user});
+    }).catch(err => {console.log(err)})
   }
 
-    // Make sure we un-register Firebase observers when the component unmounts.
     componentWillUnmount() {
         this.props.onRef(undefined)
-        this.unregisterAuthObserver();
         window.removeEventListener("optimizedResize", this.jumpToSubmitFeedback)
         this.setState({item:{}});
     }

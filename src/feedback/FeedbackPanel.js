@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { Snackbar, TextField, Radio,RadioGroup, Typography, Button } from '@material-ui/core';
 import {Star, StarBorder} from '@material-ui/icons';
-import FirebaseService from "../FirebaseService"
+import AeroGearService from "../AeroGearService"
 
 const styles = theme => ({
     root: {
@@ -45,7 +45,7 @@ const styles = theme => ({
         super(props);
         
         this.state = {
-            user: FirebaseService.auth.currentUser,
+            user: null,
             comment: null,
             score: 0,
             running: false
@@ -64,32 +64,21 @@ const styles = theme => ({
 
     feedback(  ) {
         const { title } = this.props;
-        this.setState({running:true}, () => {
-                                        FirebaseService.submitFeedback(title, this.state.comment, this.state.score)
-                                        .then(()=> {
-                                          this.setState({running:false})
-                                          this.setState({showSnackbar:true})
-                                        })
-                                        .catch(()=> {
-                                          this.setState({running:false})
-                                        });
-                                      });
-
+        AeroGearService.submitFeedback(title, this.state.comment, this.state.score);
     }
 
-    // Listen to the Firebase Auth state and set the local state.
+    
     componentDidMount() {
         this.props.onRef(this)
-        this.unregisterAuthObserver = FirebaseService.auth.onAuthStateChanged(
-            
-            (user) => {this.setState({user: user})}
-        );
+        AeroGearService.auth.loadUserProfile().then(user => {
+          console.log(user);
+          this.setState({user:user});
+        }).catch(err => {console.log(err)})
+        
     }
     
-    // Make sure we un-register Firebase observers when the component unmounts.
     componentWillUnmount() {
         this.props.onRef(undefined)
-        this.unregisterAuthObserver();
     }
 
     handleChange(field, value) {

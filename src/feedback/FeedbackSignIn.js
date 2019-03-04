@@ -2,11 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { Link, Avatar } from '@material-ui/core';
-import FirebaseService from "../FirebaseService"
-import firebase from "firebase/app";
-import "firebase/auth";
-import "firebase/firestore";
 import deepPurple from '@material-ui/core/colors/deepPurple';
+import AeroGearService from '../AeroGearService';
 
 const styles = theme => ({
   margin: {
@@ -29,7 +26,7 @@ class FeedbackSignIn extends React.Component {
     this.state = {
       anchorEl: null,
       open: false,
-      user: FirebaseService.auth.currentUser
+      user: null
     }
 
     this.signIn = this.signIn.bind(this);
@@ -43,24 +40,21 @@ class FeedbackSignIn extends React.Component {
   }
 
   signIn() {
-    FirebaseService.auth.signInWithRedirect(this.googleAuthProvider);
+    AeroGearService.login();
   }
 
   signOut() {
-    FirebaseService.auth.signOut();
+    AeroGearService.logout()
   }
 
 
-  // Listen to the Firebase Auth state and set the local state.
   componentDidMount() {
-    this.unregisterAuthObserver = FirebaseService.auth.onAuthStateChanged(
+    AeroGearService.auth.loadUserProfile().then(
       (user) => { this.setState({ user: user }) }
-    );
+    ).catch(err => console.log(err));
   }
 
-  // Make sure we un-register Firebase observers when the component unmounts.
   componentWillUnmount() {
-    this.unregisterAuthObserver();
   }
 
   render() {

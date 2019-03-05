@@ -1,11 +1,16 @@
 import { Auth } from '@aerogear/auth';
-const { init }  = require("@aerogear/app");
+const { init } = require("@aerogear/app");
+import {
+    createClient,
+    strategies
+} from '@aerogear/voyager-client';
+import gql from 'graphql-tag';
 
 class AeroGearService {
 
-    
-    constructor() {
 
+    constructor() {
+        console.log("Aerogear Service");
 
         const core = init({
             "version": 1,
@@ -13,28 +18,33 @@ class AeroGearService {
             "clientId": "devnexus-client",
             "services": [
                 {
-                "id": "945cb366-3eb8-11e9-a40b-127551823fe4",
-                "name": "keycloak",
-                "type": "keycloak",
-                "url": "https://keycloak-route-devnexus-mobile.apps.atlanta-69c6.openshiftworkshop.com/auth",
-                "config": {
-                    "auth-server-url": "https://keycloak-route-devnexus-mobile.apps.atlanta-69c6.openshiftworkshop.com/auth",
-                    "confidential-port": 0,
-                    "public-client": true,
-                    "realm": "devnexus-mobile",
-                    "resource": "devnexus-client-public",
-                    "ssl-required": "external",
-                    "enable-cors":true
-                }
+                    "id": "945cb366-3eb8-11e9-a40b-127551823fe4",
+                    "name": "keycloak",
+                    "type": "keycloak",
+                    "url": "https://keycloak-route-devnexus-mobile.apps.atlanta-69c6.openshiftworkshop.com/auth",
+                    "config": {
+                        "auth-server-url": "https://keycloak-route-devnexus-mobile.apps.atlanta-69c6.openshiftworkshop.com/auth",
+                        "confidential-port": 0,
+                        "public-client": true,
+                        "realm": "devnexus-mobile",
+                        "resource": "devnexus-client-public",
+                        "ssl-required": "external",
+                        "enable-cors": true
+                    }
                 }
             ]
         });
 
         this.auth = new Auth(core.config);
-        
-        const initOptions = { onLoad: 'login-required' };
-        this.initialized =this.auth.init(initOptions);
+        this.syncConfig = {
+            httpUrl: "http://localhost:4000/graphql",
+            wsUrl: "ws://localhost:4000/graphql",
+        };
 
+        const initOptions = { onLoad: 'login-required' };
+        this.initialized = this.auth.init(initOptions);
+        this.syncConfig.authContextProvider = this.auth.getAuthContextProvider();
+        this.syncClient = createClient(this.syncConfig);
         this.submitFeedback = this.submitFeedback.bind(this);
         this.getAuth = this.getAuth.bind(this);
         this.isEnabled = this.isEnabled.bind(this);
@@ -46,7 +56,15 @@ class AeroGearService {
     }
 
     submitFeedback(trackTitle, feedback, rating) {
-        
+        this.syncClient.then(client => {
+            client.mutate({
+                fetchPolicy: 'no-cache',
+                mutation: gql`mutation postFeedback {
+                        postFeedback (feedback: {sessionName:"${trackTitle}", comment:"${feedback}", score: ${rating} }) 
+                        {sessionName}
+                    }`
+            }).then(()=>console.log("Feedback success")).catch(err=>console.log(err))
+        })
     }
 
     getAuth() {
@@ -64,8 +82,26 @@ class AeroGearService {
     getProfile() {
         return new Promise((resolve, reject) => {
             if (this.isEnabled()) {
-
                 return this.initialized.then((success) => {
+                    console.log("Auth next");
+                    console.log(this.auth);
+
+                    
+                    this.syncClient.then(client => {client.query({
+                        fetchPolicy: 'network-only',
+                        query: gql`{me {displayName}}`
+                    })
+                    //Print the response of the query
+                    .then(({data}) => {
+                        console.log("Sync success")
+                        console.log(data.me)
+                    })
+                    .catch((err) => {
+                        console.log("Sync failure")
+                        console.log(err)
+                    })});
+            
+            
                     if (success && this.auth.isAuthenticated()) {
                         this.auth.extract().loadUserProfile().success((profile) => {
                             resolve(profile);
@@ -74,9 +110,11 @@ class AeroGearService {
                         return reject('Not authenticated');
                     }
                 }).catch((err) => {
+                    console.log("Auth failed");
                     reject(err);
                 });
             } else {
+                console.log("Auth not enabled");
                 return reject('Not enabled');
             }
         });
@@ -104,7 +142,7 @@ class AeroGearService {
         }
         return undefined;
     }
-    
+
 
 }
 

@@ -49,7 +49,7 @@ class FeedbackSignIn extends React.Component {
 
 
   componentDidMount() {
-    AeroGearService.auth.loadUserProfile().then(
+    AeroGearService.getProfile().then(
       (user) => { this.setState({ user: user }) }
     ).catch(err => console.log(err));
   }
@@ -67,7 +67,7 @@ class FeedbackSignIn extends React.Component {
         {user.photoURL?
           <Avatar alt={user.displayName} src={user.photoURL} onClick={this.displayAccountHelp}/>
           :
-          <Avatar className={classes.purpleAvatar} onClick={this.displayAccountHelp}>{user.displayName?user.displayName.toString().charAt(0).toUpperCase():"DN"}</Avatar>
+          <Avatar className={classes.purpleAvatar} onClick={this.displayAccountHelp}>{user.firstName.toString().charAt(0).toUpperCase() + user.lastName.toString().charAt(0).toUpperCase()}</Avatar>
         }
         </div>
       

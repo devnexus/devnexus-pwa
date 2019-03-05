@@ -70,7 +70,7 @@ const styles = theme => ({
     
     componentDidMount() {
         this.props.onRef(this)
-        AeroGearService.auth.loadUserProfile().then(user => {
+        AeroGearService.getProfile().then(user => {
           console.log(user);
           this.setState({user:user});
         }).catch(err => {console.log(err)})

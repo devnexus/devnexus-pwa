@@ -19,8 +19,10 @@ export class ScheduleDetail extends React.Component {
   }
   
   jumpToSubmitFeedback() {
-    this.feedback.focusComment();
-    document.getElementById('speaker').parentNode.scrollTop = 10000;
+    if (this.feedback) {
+      this.feedback.focusComment();
+      document.getElementById('speaker').parentNode.scrollTop = 10000;
+    }
   }
 
   handleClickOpen(item) {

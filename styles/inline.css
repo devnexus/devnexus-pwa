@@ -26,6 +26,10 @@ div {
     background: white; 
 }
 
+#snackbar div {
+    background: #313131; 
+}
+
 html, body {
   padding: 0;
   margin: 0;

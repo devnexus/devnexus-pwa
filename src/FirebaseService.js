@@ -43,7 +43,7 @@ class FirebaseService {
     submitFeedback(trackTitle, feedback, rating) {
         var user = firebase.auth().currentUser;
         if (user) {
-            this.db.collection("users").doc(user.uid).update(
+            return this.db.collection("users").doc(user.uid).update(
                 new firebase.firestore.FieldPath("feedback", trackTitle),
                 {
                     comment: feedback,
@@ -53,6 +53,7 @@ class FirebaseService {
             .catch((err)=> console.log(err));
         } else {
             console.log("Do not add feedback if the user is not logged in.")
+            return new Promise(()=>{});
         }
     }
     

@@ -1,13 +1,16 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { TextField, Radio,RadioGroup, Typography, Button } from '@material-ui/core';
-import {Star, StarBorder} from '@material-ui/icons';
+import { Snackbar, IconButton, TextField, Radio,RadioGroup, Typography, Button } from '@material-ui/core';
+import {Star,CloseIcon, StarBorder} from '@material-ui/icons';
 import firebase from "firebase";
 import FirebaseService from "../FirebaseService"
 
 const styles = theme => ({
     root: {
       width: 500,
+    },
+    snackbar: {
+      backgroundColor: "#313131"      
     },
     button: {
         margin: theme.spacing.unit,
@@ -46,8 +49,12 @@ const styles = theme => ({
         this.state = {
             user: FirebaseService.auth.currentUser,
             comment: null,
-            score: 0
+            score: 0,
+            running: false
         }
+
+        this.buttonRef = React.createRef();
+
         this.handleChange = this.handleChange.bind(this);
         this.feedback = this.feedback.bind(this);
         this.focusComment = this.focusComment.bind(this);
@@ -57,9 +64,18 @@ const styles = theme => ({
         this.comment.focus();
       }
 
-    feedback() {
+    feedback(event ) {
         const { title } = this.props;
-        FirebaseService.submitFeedback(title, this.state.comment, this.state.score);
+        this.setState({running:true}, () => {
+                                        FirebaseService.submitFeedback(title, this.state.comment, this.state.score)
+                                        .then(()=> {
+                                          this.setState({running:false})
+                                          this.setState({showSnackbar:true})
+                                        })
+                                        .catch(()=> {
+                                          this.setState({running:false})
+                                        });
+                                      });
 
     }
 
@@ -120,11 +136,27 @@ const styles = theme => ({
                                                 <Radio className={classes.radio} checkedIcon={this.state.score >=1?<Star color="primary"/>:<StarBorder/>} icon={this.state.score >=5?<Star  color="primary"/>:<StarBorder/>} value={5}/>
                                             </RadioGroup>
                                         </div>
-                                        <Button  disabled={this.state.score > 0?false:true} id="randomFeedback" variant="contained" color="primary" className={classes.button} onClick={() => {this.feedback()}}>
+                                        <Button ref={this.buttonRef} disabled={(this.state.score > 0 && !this.state.running)?false:true} id="randomFeedback" variant="contained" color="primary" className={classes.button} onClick={(event) => {this.feedback(event)}}>
                                             Submit
                                         </Button>
                                 </form>
                             </div>
+                            <Snackbar
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'center',
+          }}
+          open={this.state.showSnackbar}
+          ContentProps= {
+            {
+              className: classes.snackbar
+            }
+          }
+          id="snackbar"
+          autoHideDuration={60000}
+          onClose={()=>{this.setState({showSnackbar: false})}}
+          message={<span className={classes.snackbar}>Feedback submitted</span>}
+        />
                         </div>) 
                     : 
                         <div/>);

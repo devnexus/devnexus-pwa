@@ -64,7 +64,13 @@ const styles = theme => ({
 
     feedback(  ) {
         const { title } = this.props;
-        AeroGearService.submitFeedback(title, this.state.comment, this.state.score);
+        this.setState({showSnackbar:false, running:true}, ()=>{
+          AeroGearService.submitFeedback(title, this.state.comment, this.state.score)
+          .then(()=> {
+            this.setState({showSnackbar:true, running:false});
+          });
+        })
+        
     }
 
     

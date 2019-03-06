@@ -51,6 +51,7 @@ class FeedbackSignIn extends React.Component {
       (user) => { this.setState({ user: user }) }
       /* eslint-disable-next-line no-console */
     ).catch(err => console.log(err));
+    AeroGearService.start();
   }
 
   componentWillUnmount() {

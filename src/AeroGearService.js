@@ -10,6 +10,9 @@ class AeroGearService {
 
 
     constructor() {
+
+        this.user = {}
+
         const core = init({
             "version": 1,
             "namespace": "devnexus-mobile",
@@ -51,10 +54,11 @@ class AeroGearService {
         this.login = this.login.bind(this);
         this.logout = this.logout.bind(this);
         this.getAuthContextProvider = this.getAuthContextProvider.bind(this);
+        
     }
 
     submitFeedback(trackTitle, feedback, rating) {
-        this.syncClient.then(client => {
+        return this.syncClient.then(client => {
             client.mutate({
                 fetchPolicy: 'no-cache',
                 mutation: gql`mutation postFeedback {
@@ -77,29 +81,48 @@ class AeroGearService {
         return this.auth.isAuthenticated();
     }
 
+    start() {
+        return this.getProfile()
+            .then(()=> {
+                return this.syncClient.then(client => {client.query({
+                    fetchPolicy: 'network-only',
+                    query: gql`{me {displayName}}`
+                })
+                //Print the response of the query
+                .then(({data}) => {
+                    this.user= data.me;
+                    return this.user;
+                })
+                .catch((err) => {
+                    console.log("Sync failure")
+                    console.log(err)
+                })});
+        }).then(()=> {
+            return this.syncClient.then((client)=> {
+                client.subscribe({
+                    query: gql`subscription{userActivity {
+                        feedback {
+                          sessionName
+                          score
+                          comment
+                        }
+                      }}`
+                }).subscribe({
+                    next(data) {
+                        console.log("Subscription data")
+                      console.log(data)
+                    },
+                    error(err) { console.error('err', err); },
+                  });
+            })
+        });
+    }
+
     getProfile() {
         return new Promise((resolve, reject) => {
             if (this.isEnabled()) {
                 return this.initialized.then((success) => {
-                    console.log("Auth next");
-                    console.log(this.auth);
-
                     
-                    this.syncClient.then(client => {client.query({
-                        fetchPolicy: 'network-only',
-                        query: gql`{me {displayName}}`
-                    })
-                    //Print the response of the query
-                    .then(({data}) => {
-                        console.log("Sync success")
-                        console.log(data.me)
-                    })
-                    .catch((err) => {
-                        console.log("Sync failure")
-                        console.log(err)
-                    })});
-            
-            
                     if (success && this.auth.isAuthenticated()) {
                         this.auth.extract().loadUserProfile().success((profile) => {
                             resolve(profile);

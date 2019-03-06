@@ -151,7 +151,7 @@ const styles = theme => ({
             }
           }
           id="snackbar"
-          autoHideDuration={60000}
+          autoHideDuration={2000}
           onClose={()=>{this.setState({showSnackbar: false})}}
           message={<span className={classes.snackbar}>Feedback submitted</span>}
         />

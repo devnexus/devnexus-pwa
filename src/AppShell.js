@@ -52,9 +52,7 @@ class AppShell extends React.Component {
   componentDidMount(){
     let visited = localStorage["alreadyVisited"];
     if(visited) {
-      //this.accountDialog.current.handleClose();
-      localStorage["alreadyVisited"] = true;
-        this.accountDialog.current.handleOpen();
+      this.accountDialog.current.handleClose();
     } else {
          localStorage["alreadyVisited"] = true;
          this.accountDialog.current.handleOpen();

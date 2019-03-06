@@ -4,23 +4,25 @@ import CloseIcon from '@material-ui/icons/Close';
 
 
 class AccountDialog extends React.Component {
-  state = {
-    open:false
-  }
-
+  
   constructor(props) {
     super(props)
+
+    this.state = {
+      open:false
+    }  
+  
     this.handleClose = this.handleClose.bind(this);
     this.handleOpen = this.handleOpen.bind(this); 
   }
 
-  handleClose = () => {
+  handleClose() {
     this.setState ({open:false})
-  };
+  }
 
-  handleOpen = () => {
+  handleOpen() {
     this.setState ({open:true})
-  };
+  }
 
   render() {
 
@@ -30,9 +32,8 @@ class AccountDialog extends React.Component {
           Sign In for Stuff
           <IconButton aria-label="Close"  onClick={this.handleClose}  style={{
                                                                                 position: 'absolute',
-                                                                                right: theme.spacing.unit,
-                                                                                top: theme.spacing.unit,
-                                                                                color: theme.palette.grey[500],
+                                                                                right: "8px",
+                                                                                top: "8px",
                                                                               }}>
             <CloseIcon />
           </IconButton>

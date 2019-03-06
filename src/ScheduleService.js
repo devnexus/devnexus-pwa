@@ -91,15 +91,6 @@ class ScheduleService {
         this.listeners.forEach(listener=>listener(this.data));
     }
 
-    fetchDays() {
-        if (data.days) {
-            return this.data.days;
-        } else {
-            return {};
-        }
-    }
-
-
     allRooms() {
         var rooms = new Array();
         this.data.days.forEach((date)=>{
@@ -127,8 +118,7 @@ class ScheduleService {
             this.data = data.schedule.conference;
             this.dataUpdated();
         })
-        .catch((err) => {
-            console.log(err);
+        .catch(() => {
             this.data = {};
             this.dataUpdated();
         });

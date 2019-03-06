@@ -1,8 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { Link, Avatar } from '@material-ui/core';
 import FirebaseService from "../FirebaseService"
-import firebase from "firebase";
+import firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/firestore";
 import deepPurple from '@material-ui/core/colors/deepPurple';
 
 const styles = theme => ({
@@ -18,17 +21,14 @@ const styles = theme => ({
 
 class FeedbackSignIn extends React.Component {
 
-  state = {
-    anchorEl: null,
-    open: false
-  };
-
-  googleAuthProvider = new firebase.auth.GoogleAuthProvider();
-
   constructor(props) {
     super(props);
+    
+    this.googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
     this.state = {
+      anchorEl: null,
+      open: false,
       user: FirebaseService.auth.currentUser
     }
 
@@ -39,7 +39,6 @@ class FeedbackSignIn extends React.Component {
 
   displayAccountHelp() {
     const { accountDialog } = this.props;
-    console.log(accountDialog.current)
     accountDialog.current.handleOpen();
   }
 
@@ -94,5 +93,11 @@ class FeedbackSignIn extends React.Component {
   }
 
 }
+
+
+FeedbackSignIn.propTypes = {
+  accountDialog: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired,
+};
 
 export default withStyles(styles)(FeedbackSignIn);

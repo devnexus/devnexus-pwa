@@ -28,12 +28,12 @@ export class ScheduleDetail extends React.Component {
   handleClickOpen(item) {
     window.location.hash = "#open";
     this.setState({ open: true, item:item });
-  };
+  }
 
   handleClose() {
     window.location.hash = "";
     this.setState({ open: false });
-  };
+  }
 
 
   componentDidMount() {
@@ -136,6 +136,7 @@ export class ScheduleDetail extends React.Component {
 
 ScheduleDetail.propTypes = {
   fullScreen: PropTypes.bool.isRequired,
+  onRef: PropTypes.bool.isRequired,
 };
 
 export default withMobileDialog()(ScheduleDetail);

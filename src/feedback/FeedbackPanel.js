@@ -1,10 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { Snackbar, IconButton, TextField, Radio,RadioGroup, Typography, Button } from '@material-ui/core';
-import {Star,CloseIcon, StarBorder} from '@material-ui/icons';
-import firebase from "firebase/app";
-import "firebase/auth";
-import "firebase/firestore";
+import { Snackbar, TextField, Radio,RadioGroup, Typography, Button } from '@material-ui/core';
+import {Star, StarBorder} from '@material-ui/icons';
 import FirebaseService from "../FirebaseService"
 
 const styles = theme => ({
@@ -43,8 +41,6 @@ const styles = theme => ({
   
  class FeedbackPanel extends React.Component {
 
-    googleAuthProvider = new firebase.auth.GoogleAuthProvider();
-
     constructor(props) {
         super(props);
         
@@ -66,7 +62,7 @@ const styles = theme => ({
         this.comment.focus();
       }
 
-    feedback(event ) {
+    feedback(  ) {
         const { title } = this.props;
         this.setState({running:true}, () => {
                                         FirebaseService.submitFeedback(title, this.state.comment, this.state.score)
@@ -165,5 +161,13 @@ const styles = theme => ({
        
     }
 }
+
+
+FeedbackPanel.propTypes = {
+  classes: PropTypes.object.isRequired,
+  onRef: PropTypes.object.isRequired,
+  title: PropTypes.object.isRequired,
+};
+
 
 export default withStyles(styles)(FeedbackPanel);

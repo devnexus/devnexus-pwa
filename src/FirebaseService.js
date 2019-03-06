@@ -1,7 +1,7 @@
 import firebase from "firebase/app";
-import "firebase/auth";
-// Required for side-effects
-require("firebase/firestore");
+import "firebase/auth"
+import "firebase/firestore";
+
 
 class FirebaseService {
 
@@ -21,6 +21,7 @@ class FirebaseService {
         this.db = firebase.firestore();
         this.db.enablePersistence()
             .catch(function(err) {
+                /* eslint-disable-next-line no-console */
                console.log(err)
             });
 
@@ -34,6 +35,7 @@ class FirebaseService {
                             email: user.email
                         }, { merge: true }
                     ).then(()=>{})
+                    /* eslint-disable-next-line no-console */
                      .catch((err)=> console.log(err));
                 }
             }
@@ -51,8 +53,10 @@ class FirebaseService {
                     score: rating
                 }
             ).then(()=>{})
+            /* eslint-disable-next-line no-console */
             .catch((err)=> console.log(err));
         } else {
+            /* eslint-disable-next-line no-console */
             console.log("Do not add feedback if the user is not logged in.")
             return new Promise(()=>{});
         }

@@ -4,7 +4,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import React from 'react';
 import {  createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 
-import { Divider, Toolbar, Typography, Chip, Avatar} from '@material-ui/core';
+import { Divider, Toolbar, Typography, Chip} from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import ScheduleService from './ScheduleService';
 import Tabs from '@material-ui/core/Tabs';
@@ -12,7 +12,7 @@ import Tab from '@material-ui/core/Tab';
 import ScheduleDetail from './ScheduleDetail'
 
 
-const styles = theme => ({});
+const styles = () => ({});
 const theme = createMuiTheme();
 
 const Dates = [new Date(2019, 2, 6), new Date(2019, 2, 7),new Date(2019, 2, 8)]
@@ -26,7 +26,9 @@ export class Schedule extends React.Component {
       date: Dates[1],
       dateIndex: 1,
     };
-    
+
+    this.doUpdate();
+    this.updateDimensions();
     
     this.handleUpdate = this.handleUpdate.bind(this);
     this.doUpdate = this.doUpdate.bind(this);
@@ -72,11 +74,6 @@ export class Schedule extends React.Component {
     window.removeEventListener('resize', this.updateDimensions)
   }
 
- 
-  componentWillMount() {
-    this.doUpdate();
-    this.updateDimensions();
-  }
 
  componentDidUpdate() {
   this.updateDimensions();
@@ -150,7 +147,7 @@ export class Schedule extends React.Component {
     ScheduleService.scheduleUpdate();
   }
 
-  handleUpdate(data) {
+  handleUpdate() {
     this.forceUpdate();
   }
 

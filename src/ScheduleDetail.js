@@ -42,8 +42,9 @@ export class ScheduleDetail extends React.Component {
     window.addEventListener("hashchange", () => { if(window.location.hash === "") {this.handleClose()} }, false);
     window.addEventListener("optimizedResize", this.jumpToSubmitFeedback );
     AeroGearService.getProfile().then(user => {
-      console.log(user);
+
       this.setState({user:user});
+      /* eslint-disable-next-line no-console */
     }).catch(err => {console.log(err)})
   }
 

@@ -20,8 +20,6 @@ class FeedbackSignIn extends React.Component {
 
   constructor(props) {
     super(props);
-    
-    this.googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
     this.state = {
       anchorEl: null,
@@ -51,6 +49,7 @@ class FeedbackSignIn extends React.Component {
   componentDidMount() {
     AeroGearService.getProfile().then(
       (user) => { this.setState({ user: user }) }
+      /* eslint-disable-next-line no-console */
     ).catch(err => console.log(err));
   }
 

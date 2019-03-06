@@ -1,8 +1,8 @@
+/* eslint-disable no-console */
 import { Auth } from '@aerogear/auth';
-const { init } = require("@aerogear/app");
+import { init } from "@aerogear/app";
 import {
-    createClient,
-    strategies
+    createClient
 } from '@aerogear/voyager-client';
 import gql from 'graphql-tag';
 
@@ -10,8 +10,6 @@ class AeroGearService {
 
 
     constructor() {
-        console.log("Aerogear Service");
-
         const core = init({
             "version": 1,
             "namespace": "devnexus-mobile",

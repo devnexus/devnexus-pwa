@@ -71,8 +71,8 @@ const styles = theme => ({
     componentDidMount() {
         this.props.onRef(this)
         AeroGearService.getProfile().then(user => {
-          console.log(user);
           this.setState({user:user});
+          /* eslint-disable-next-line no-console */
         }).catch(err => {console.log(err)})
         
     }

@@ -1,8 +1,7 @@
 
 module.exports = {
-        mode: 'development',
+        mode: 'production',
 	entry: './app.js',
-	devtool: "eval-source-map",
 	output: {
 		filename: 'bundle.js'
 	},

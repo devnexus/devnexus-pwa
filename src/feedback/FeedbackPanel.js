@@ -2,7 +2,9 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { Snackbar, IconButton, TextField, Radio,RadioGroup, Typography, Button } from '@material-ui/core';
 import {Star,CloseIcon, StarBorder} from '@material-ui/icons';
-import firebase from "firebase";
+import firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/firestore";
 import FirebaseService from "../FirebaseService"
 
 const styles = theme => ({

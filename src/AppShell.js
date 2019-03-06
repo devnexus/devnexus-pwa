@@ -1,7 +1,7 @@
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import { Snackbar, Typography} from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import Schedule from './Schedule'
 import FeedbackSignIn from './feedback/FeedbackSignIn'
@@ -51,7 +51,10 @@ class AppShell extends React.Component {
   componentDidMount(){
     let visited = localStorage["alreadyVisited"];
     if(visited) {
-      this.accountDialog.current.handleClose();
+      //this.accountDialog.current.handleClose();
+      localStorage["alreadyVisited"] = true;
+      console.log(this.accountDialog.current.handleOpen)
+        this.accountDialog.current.handleOpen();
     } else {
          localStorage["alreadyVisited"] = true;
          this.accountDialog.current.handleOpen();

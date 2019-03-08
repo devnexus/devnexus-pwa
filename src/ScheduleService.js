@@ -17,7 +17,7 @@ class ScheduleService {
             "Cloud Tech ":"Ballroom D",
             "Core Java":"104",
             "Frameworks":"Ballroom F",
-            "Java Platform":"Exhibition Hall B",
+            "Java Platform":"Exhibition Hall D",
             "JavaScript":"Ballroom E",
             "Practices":"103",
             "Security":"Ballroom C",

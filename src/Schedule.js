@@ -142,7 +142,12 @@ export class Schedule extends React.Component {
     "Unobtanium": {
       "room": "114",
       "color": "#1668ba"
+    },            
+    "After Party": {
+      "room" :"Joystick Game Bar",
+      "color":"#f1a71e"
     }
+
   };
    return colors[trackName]?colors[trackName].color:"#ed1e24";
  }

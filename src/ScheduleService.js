@@ -25,7 +25,8 @@ class ScheduleService {
             "Web":"102",
             "Foyer":"Foyer",
             "Unobtanium":"114",
-            "Break":"Sponsor Lounge"
+            "Break":"Sponsor Lounge",
+            "After Party": "Joystick Game Bar"
         };
 
     }

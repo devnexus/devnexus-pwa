@@ -52,7 +52,7 @@ class ScheduleService {
                     if (!daySchedule[scheduleItem.start]) {
                         daySchedule[scheduleItem.start] = []
                     }
-                    daySchedule[scheduleItem.start].push({title:scheduleItem.title, track:scheduleItem.track, room:this.mapping[scheduleItem.room], detailsArgs: [dateIndex, room.roomName, index]});
+                    daySchedule[scheduleItem.start].push({title:scheduleItem.title, track:scheduleItem.track, room:(scheduleItem.title.includes("Break")?"Sponsor Lounge":this.mapping[scheduleItem.room]), detailsArgs: [dateIndex, room.roomName, index]});
                 });
             }
         });

@@ -5,7 +5,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import { Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import Schedule from './Schedule'
-import FeedbackSignIn from './feedback/FeedbackSignIn'
+// import FeedbackSignIn from './feedback/FeedbackSignIn'
 import AccountDialog from './feedback/AccountDialog'
 
 const styles = {
@@ -67,7 +67,7 @@ class AppShell extends React.Component {
           <Typography variant="h6" color="inherit" className={this.classes.grow}>
             DevNexus 2019 Schedule
           </Typography>
-          <FeedbackSignIn accountDialog={this.accountDialog}/>
+          {/*<FeedbackSignIn accountDialog={this.accountDialog}/>*/}
         </Toolbar>
       </AppBar>
       <Schedule style={scheduleStyle}/>

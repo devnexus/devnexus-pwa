@@ -134,9 +134,9 @@ export class ScheduleDetail extends React.Component {
 
 
 
-ScheduleDetail.propTypes = {
-  fullScreen: PropTypes.bool.isRequired,
-  onRef: PropTypes.bool.isRequired,
-};
+// ScheduleDetail.propTypes = {
+//   fullScreen: PropTypes.bool.isRequired,
+//   onRef: PropTypes.bool.isRequired,
+// };
 
 export default withMobileDialog()(ScheduleDetail);

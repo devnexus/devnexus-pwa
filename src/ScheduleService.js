@@ -10,23 +10,21 @@ class ScheduleService {
         this.dateIndexCache = [];
 
         this.mapping = {
-            "2GM": "115",
-            "Agile":"105",
-            "Architecture":"Ballroom A",
-            "Cloud Infra":"Ballroom B",
-            "Cloud Tech ":"Ballroom D",
-            "Core Java":"104",
-            "Frameworks":"Ballroom F",
-            "Java Platform":"Exhibition Hall D",
-            "JavaScript":"Ballroom E",
-            "Practices":"103",
-            "Security":"Ballroom C",
-            "Tools - Techniques":"106",
-            "Web":"102",
-            "Foyer":"Foyer",
-            "Unobtanium":"114",
-            "Break":"Sponsor Lounge",
-            "After Party": "Joystick Game Bar"
+            "Room 1":"302",
+            "Room 2":"303",
+            "Room 3":"304",
+            "Room 4":"305",
+            "Room 5":"311",
+            "Room 6":"312",
+            "Room 7":"313",
+            "Room 8":"314",
+            "Room 9":"315/316",
+            "Room 10":"403",
+            "Room 11":"404",
+            "Room 12":"405",
+            "Room 13":"411",
+            "Room 14":"412",
+            "Room 15":"Sydney Marcus Auditorium"
         };
 
     }
@@ -51,7 +49,7 @@ class ScheduleService {
                 roomSchedule[room.roomName].forEach((scheduleItem, index)=> {
                     if (!daySchedule[scheduleItem.start]) {
                         daySchedule[scheduleItem.start] = []
-                    }
+                    }                    
                     daySchedule[scheduleItem.start].push({title:scheduleItem.title, track:scheduleItem.track, room:(scheduleItem.title.includes("Break")?"Sponsor Lounge":scheduleItem.title.includes("Lunch")?"Exhibition Hall B":this.mapping[scheduleItem.room]), detailsArgs: [dateIndex, room.roomName, index]});
                 });
             }

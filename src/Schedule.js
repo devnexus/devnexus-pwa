@@ -2,7 +2,8 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import React from 'react';
-import {  createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import {  createMuiTheme,ThemeProvider } from '@material-ui/core/styles';
+
 
 import { Divider, Toolbar, Typography, Chip} from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
@@ -15,7 +16,7 @@ import ScheduleDetail from './ScheduleDetail'
 const styles = () => ({});
 const theme = createMuiTheme();
 
-const Dates = [new Date(2019, 2, 6), new Date(2019, 2, 7),new Date(2019, 2, 8)]
+const Dates = [new Date(2020, 1, 19), new Date(2020, 1, 20),new Date(2020, 1, 21)]
 
 export class Schedule extends React.Component {
   constructor(props) {
@@ -23,8 +24,8 @@ export class Schedule extends React.Component {
     
     //Updated in component did mount
     this.state = {
-      date: Dates[1],
-      dateIndex: 1,
+      date: Dates[0],
+      dateIndex: 0,
     };
 
     this.doUpdate();
@@ -64,8 +65,8 @@ export class Schedule extends React.Component {
     ScheduleService.addListener(this.handleUpdate)
     window.addEventListener('resize', this.updateDimensions)
     this.setState({
-      date: Dates[1],
-      dateIndex: 1,
+      date: Dates[0],
+      dateIndex: 0,
     })
   }
 
@@ -82,72 +83,100 @@ export class Schedule extends React.Component {
 
  getColor(trackName) {
    const colors = {
+    "Unobtanium": {
+      "color": "#0d86e2",
+      "room": "313"
+    },
     "2GM": {
       "color": "#0d86e2",
       "room": "115"
     },
-    "Agile": {
-      "color": "#0d86e2",
-      "room": "105"
-    },
-    "Architecture": {
-      "room": "Ballroom A",
+    "Lunch": {
+      "room": "Level 1",
       "color": "#a84617"
     },
-    "Cloud Infrastructure (Microservices and Serverless)": {
-      "room": "Ballroom B",
-      "color": "#6328E7"
+    "Break": {
+      "room": "Sponsor Lounge",
+      "color": "#a84617"
     },
-    "Cloud Infra": {
-      "room": "Ballroom B",
-      "color": "#6328E7"
+    "Registration & Breakfast": {
+      "room": "Sponsor Lounge",
+      "color": "#a84617"
     },
-    "Cloud Technology": {
-      "room": "Ballroom D",
-      "color": "#8b2246"
+    "Happy Hour": {
+      "room": "Sponsor Lounge",
+      "color": "#a84617"
     },
-    "Core Java": {
-      "room": "104",
-      "color": "#8bbc0f"
+    "Sponsor Lounge": {
+      "room": "Sponsor Lounge",
+      "color": "#a84617"
     },
-    "Frameworks": {
-      "room": "Ballroom F",
-      "color": "#5b903f"
+    "Registration & Breakfast": {
+      "room": "Sponsor Lounge",
+      "color": "#a84617"
     },
-    "Java Platform": {
-      "room": "Exhibition Hall D",
-      "color": "#f6921e"
+    "Stage": {
+      "room": "Level 3",
+      "color": "#a84617"
+    },"After Party": {
+      "room": "After Party",
+      "color": "#a84617"
+    },"#CodeNCoffee": {
+      "room": "Ballroom A",
+      "color": "#a84617"
+    },"Keynotes": {
+      "room": "Sidney Marcus Auditorium",
+      "color": "#a84617"
+    },"Workshops": {
+      "room": "Sponsor Lounge",
+      "color": "TBD"
+    },"Agile": {
+      "room": "312",
+      "color": "#a84617"
     },
-    "JavaScript": {
-      "room": "Ballroom E",
-      "color": "#127e9c"
-    },
-    "Practices and other tech": {
-      "room": "103",
-      "color": "#4331e2"
-    },
-    "Security": {
-      "room": "Ballroom C",
-      "color": "#2a2d7c"
-    },
-    "Tools and Techniques": {
-      "room": "106",
-      "color": "#FA7713"
-    },
-    "Web": {
-      "room": "102",
-      "color": "#015351"
-    },
-  
-    "Unobtanium": {
-      "room": "114",
-      "color": "#1668ba"
-    },            
-    "After Party": {
-      "room" :"Joystick Game Bar",
-      "color":"#f1a71e"
-    }
 
+    "Architecture": {
+      "room": "Sidney Marcus Auditorium",
+      "color": "#a84617"
+    },"Cloud Infrastructure": {
+      "room": "302",
+      "color": "#a84617"
+    },"Cloud Technology": {
+      "room": "411",
+      "color": "#a84617"
+    },"Core Java": {
+      "room": "305",
+      "color": "#a84617"
+    },"Frameworks": {
+      "room": "314",
+      "color": "#a84617"
+    },"Java Platform": {
+      "room": "315/316",
+      "color": "#a84617"
+    },"Javascript": {
+      "room": "303",
+      "color": "#a84617"
+    },
+    "JVM Languages": {
+      "room": "311",
+      "color": "#a84617"
+    },"Open Java": {
+      "room": "412",
+      "color": "#a84617"
+    },"Practices and Other Tech": {
+      "room": "405",
+      "color": "#a84617"
+    },"Security": {
+      "room": "403",
+      "color": "#a84617"
+    },"Tools and Techniques": {
+      "room": "404",
+      "color": "#a84617"
+    },"Web and Front-end": {
+      "room": "304",
+      "color": "#a84617"
+    },
+   
   };
    return colors[trackName]?colors[trackName].color:"#ed1e24";
  }
@@ -191,19 +220,18 @@ export class Schedule extends React.Component {
                               primary={item.title}
                               secondary={
                                 <React.Fragment>
-                                  <MuiThemeProvider theme={
-                                    { ...theme,
-                                      palette: {
-                                        ...theme.palette,
+                                  <ThemeProvider  theme={createMuiTheme(
+                                    { palette: {
                                         primary: {
-                                          main: this.getColor(item.track)
+                                          main: this.getColor(item.track|"#0d86e2")
                                         }
                                       }
                                     }
+                                    )
                                   }>
                                   
                                     <Chip label={((item.track === "Cloud Infrastructure (Microservices and Serverless)"?"Cloud Infrastructure":item.track) + " | " + item.room)} variant="outlined"  color="primary"/>
-                                  </MuiThemeProvider>
+                                  </ThemeProvider>
                                   <div style={{display: 'inline-flex', paddingLeft:'1em'}}>
                                   {scheduleItem.persons?scheduleItem.persons.map((speaker, i) => {
                                     return (<div key={scheduleItem.id + "2" + i + "3"} style={{paddingRight:'1em'}}>
@@ -239,8 +267,9 @@ export class Schedule extends React.Component {
     return <div>
             <Toolbar id="toolbar">
               <Tabs style={flex} value={this.state.dateIndex}>
-                <Tab label="Mar 7" value={1}  onClick={this.setDate.bind(this, 1)} style={{"color":"black"}}/>
-                <Tab label="Mar 8" value={2} onClick={this.setDate.bind(this, 2)} style={{"color":"black"}}/>                
+                <Tab label="Feb 19" value={0}  onClick={this.setDate.bind(this, 0)} style={{"color":"black"}}/>
+                <Tab label="Feb 20" value={1} onClick={this.setDate.bind(this, 1)} style={{"color":"black"}}/>                
+                <Tab label="Feb 21" value={2} onClick={this.setDate.bind(this, 2)} style={{"color":"black"}}/>                
               </Tabs>
             </Toolbar>
             <Divider/>

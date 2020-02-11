@@ -65,7 +65,7 @@ class AppShell extends React.Component {
        <AppBar position="static" color="default" id="appbar">
         <Toolbar>
           <Typography variant="h6" color="inherit" className={this.classes.grow}>
-            DevNexus 2019 Schedule
+            Devnexus 2020 Schedule
           </Typography>
           {/*<FeedbackSignIn accountDialog={this.accountDialog}/>*/}
         </Toolbar>

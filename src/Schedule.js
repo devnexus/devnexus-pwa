@@ -81,10 +81,11 @@ export class Schedule extends React.Component {
   document.getElementById('listBody').scrollTop = 0;
  }
 
- getColor(trackName) {
+getColor(trackName) {
+   console.log("getcolor called")
    const colors = {
     "Unobtanium": {
-      "color": "#0d86e2",
+      "color": "#1668ba",
       "room": "313"
     },
     "2GM": {
@@ -129,10 +130,10 @@ export class Schedule extends React.Component {
       "color": "#a84617"
     },"Workshops": {
       "room": "Sponsor Lounge",
-      "color": "TBD"
+      "color": "#6c7070"
     },"Agile": {
       "room": "312",
-      "color": "#a84617"
+      "color": "#C30772"
     },
 
     "Architecture": {
@@ -140,44 +141,55 @@ export class Schedule extends React.Component {
       "color": "#a84617"
     },"Cloud Infrastructure": {
       "room": "302",
-      "color": "#a84617"
+      "color": "#6328E7"
     },"Cloud Technology": {
       "room": "411",
-      "color": "#a84617"
+      "color": "#8b2246"
     },"Core Java": {
       "room": "305",
-      "color": "#a84617"
+      "color": "#00A566"
     },"Frameworks": {
       "room": "314",
-      "color": "#a84617"
+      "color": "#bb671c"
     },"Java Platform": {
       "room": "315/316",
-      "color": "#a84617"
+      "color": "#019875"
     },"Javascript": {
       "room": "303",
-      "color": "#a84617"
+      "color": "#127e9c"
+    },"JavaScript": {
+      "room": "303",
+      "color": "#127e9c"
     },
     "JVM Languages": {
       "room": "311",
-      "color": "#a84617"
+      "color": "#007a4b"
     },"Open Java": {
       "room": "412",
-      "color": "#a84617"
+      "color": "#2e8856"
     },"Practices and Other Tech": {
       "room": "405",
-      "color": "#a84617"
+      "color": "#5b903f"
+    },"Practices and other tech": {
+      "room": "405",
+      "color": "#5b903f"
     },"Security": {
       "room": "403",
-      "color": "#a84617"
+      "color": "#cc9999"
     },"Tools and Techniques": {
       "room": "404",
-      "color": "#a84617"
-    },"Web and Front-end": {
+      "color": "#2a2d7c"
+    },"Tools and techniques": {
+      "room": "404",
+      "color": "#2a2d7c"
+    }
+    ,"Web and Front-end": {
       "room": "304",
-      "color": "#a84617"
+      "color": "#d46a43"
     },
    
   };
+   console.log("TrackName, found,", trackName, colors[trackName]);
    return colors[trackName]?colors[trackName].color:"#ed1e24";
  }
 
@@ -213,6 +225,7 @@ export class Schedule extends React.Component {
                   <List className="scheduleEventsColumn" style={{"paddingTop":"0"}}>
                     {
                       scheduleItems.map((item) => {
+                        var color = this.getColor(item.track);
                         var scheduleItem = ScheduleService.findScheduleItem(...item.detailsArgs);
                         return <ListItem className="scheduleEventListItem" key={scheduleItems.indexOf(item)} button style={{"backgroundColor":"white"}} onClick={()=>{this.displayDetails(...item.detailsArgs)}} >
                           
@@ -223,7 +236,7 @@ export class Schedule extends React.Component {
                                   <ThemeProvider  theme={createMuiTheme(
                                     { palette: {
                                         primary: {
-                                          main: this.getColor(item.track|"#0d86e2")
+                                          main: color
                                         }
                                       }
                                     }

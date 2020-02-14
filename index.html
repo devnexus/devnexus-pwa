@@ -19,6 +19,7 @@
 			if ('serviceWorker' in navigator) {
 				navigator.serviceWorker.register('/sw_2020.js').then(function(registration) {
 					// Registration was successful
+					registration.update();
 				}).catch(function(err) {
 					// registration failed :(
 					console.log('ServiceWorker registration failed: ', err);

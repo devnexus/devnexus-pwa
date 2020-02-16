@@ -10,21 +10,21 @@ class ScheduleService {
         this.dateIndexCache = [];
 
         this.mapping = {
-            "Room 1":"302",
-            "Room 2":"303",
-            "Room 3":"304",
-            "Room 4":"305",
-            "Room 5":"311",
-            "Room 6":"312",
-            "Room 7":"313",
-            "Room 8":"314",
-            "Room 9":"315/316",
-            "Room 10":"403",
-            "Room 11":"404",
-            "Room 12":"405",
-            "Room 13":"411",
-            "Room 14":"412",
-            "Room 15":"Sydney Marcus Auditorium"
+            "Room 1":"312",
+            "Room 2":"Sidney Marcus Auditorium",
+            "Room 3":"302",
+            "Room 4":"411",
+            "Room 5":"305",
+            "Room 6":"314",
+            "Room 7":"315/316",
+            "Room 8":"303",
+            "Room 9":"311",
+            "Room 10":"412",
+            "Room 11":"405",
+            "Room 12":"403",
+            "Room 13":"404",
+            "Room 14":"304",
+            "Room 15":"313"
         };
 
     }

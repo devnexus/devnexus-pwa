@@ -31,7 +31,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "webpack --watch",
     "serve": "static-server",
-    "build": "webpack --config webpack.config.prod.js",
+    "build": "webpack -p --config webpack.config.prod.js",
     "lint": "eslint 'src/**/*.js'"
   },
   "repository": {

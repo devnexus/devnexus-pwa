@@ -6,8 +6,26 @@ class ScheduleService {
         this._type = "ScheduleService"
         this.listeners = [];
         this.data = {};
-
+        this.getRoomForItem = this.getRoomForItem.bind(this)
         this.dateIndexCache = [];
+
+        this.workshopMapping = {
+            "Room 1":"302",
+            "Room 2":"303",
+            "Room 3":"304",
+            "Room 4":"305",
+            "Room 5":"311",
+            "Room 6":"312",
+            "Room 7":"313",
+            "Room 8":"314",
+            "Room 9":"315/316",
+            "Room 10":"403",
+            "Room 11":"404",
+            "Room 12":"405",
+            "Room 13":"",
+            "Room 14":"",
+            "Room 15":""
+        }
 
         this.mapping = {
             "Room 1":"312",
@@ -29,6 +47,13 @@ class ScheduleService {
 
     }
 
+    getRoomForItem(scheduleItem) {
+        if (scheduleItem.type === "workshop") {
+            return this.workshopMapping[scheduleItem.room];
+        }
+        return (scheduleItem.title.includes("Break")?"Sponsor Lounge":scheduleItem.title.includes("Lunch")?"Exhibition Hall B":this.mapping[scheduleItem.room]);
+    }
+    
     findScheduleItem(dateIndex, roomName, roomIndex) {
         return this.data.days[dateIndex].rooms[roomName][roomIndex];
     }
@@ -50,7 +75,7 @@ class ScheduleService {
                     if (!daySchedule[scheduleItem.start]) {
                         daySchedule[scheduleItem.start] = []
                     }                    
-                    daySchedule[scheduleItem.start].push({title:scheduleItem.title, track:scheduleItem.track, room:(scheduleItem.title.includes("Break")?"Sponsor Lounge":scheduleItem.title.includes("Lunch")?"Exhibition Hall B":this.mapping[scheduleItem.room]), detailsArgs: [dateIndex, room.roomName, index]});
+                    daySchedule[scheduleItem.start].push({title:scheduleItem.title, track:scheduleItem.track, room:this.getRoomForItem(scheduleItem), detailsArgs: [dateIndex, room.roomName, index]});
                 });
             }
         });

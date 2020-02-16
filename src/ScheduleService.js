@@ -28,6 +28,7 @@ class ScheduleService {
         }
 
         this.mapping = {
+            "Keynote Room":"Sidney Marcus Auditorium",
             "Room 1":"312",
             "Room 2":"Sidney Marcus Auditorium",
             "Room 3":"302",
@@ -48,9 +49,19 @@ class ScheduleService {
     }
 
     getRoomForItem(scheduleItem) {
+
+        if (scheduleItem.title === "Women in Tech Breakfast at DevNexus") {
+            scheduleItem.track = "#CodeNCoffee";
+            scheduleItem.room = "412";
+            return "412";
+        }
+
         if (scheduleItem.type === "workshop") {
             return this.workshopMapping[scheduleItem.room];
         }
+
+
+
         return (scheduleItem.title.includes("Break")?"Sponsor Lounge":scheduleItem.title.includes("Lunch")?"Exhibition Hall B":this.mapping[scheduleItem.room]);
     }
     
@@ -75,7 +86,7 @@ class ScheduleService {
                     if (!daySchedule[scheduleItem.start]) {
                         daySchedule[scheduleItem.start] = []
                     }                    
-                    daySchedule[scheduleItem.start].push({title:scheduleItem.title, track:scheduleItem.track, room:this.getRoomForItem(scheduleItem), detailsArgs: [dateIndex, room.roomName, index]});
+                    daySchedule[scheduleItem.start].push({title:scheduleItem.title, room:this.getRoomForItem(scheduleItem),track:scheduleItem.track,  detailsArgs: [dateIndex, room.roomName, index]});
                 });
             }
         });

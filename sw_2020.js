@@ -12,12 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var dataCacheName = 'devnexusData-v2';
-var cacheName = 'devnexusPWA-final-2';
+var dataCacheName = 'devnexusData-v3';
+var cacheName = 'devnexusPWA-final-3';
 var filesToCache = [
   '/',
   '/index.html',
-  '/bundle.js',
+  '/dist/bundle2.js',
   '/full_schedule.json',
   'https://fonts.googleapis.com/css?family=Roboto:300,400,500',
   '/styles/inline.css'

@@ -28,6 +28,7 @@ if (process.browser) {
   window.theme = theme;
 }
 
+console.log("DevNexus 2020 is running");
 
 ReactDOM.render(
   <MuiThemeProvider theme={theme}>

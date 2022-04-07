@@ -84,6 +84,37 @@ export class Schedule extends React.Component {
 getColor(trackName) {
    console.log("getcolor called")
    const colors = {
+     /*
+     ​​​
+: (1) […]
+​​​
+: (1) […]
+​​​
+"": (1) […]
+​​​
+"": (1) […]
+​​​
+"": (1) […]
+​​​
+: (1) […]
+​​​
+Frameworks: (1) […]
+​​​
+"Java Platform": (1) […]
+​​​
+"Keynote Room": []
+​​​
+"Practices and other tech": []
+​​​
+Security: []
+​​​
+"Tools and techniques": []
+​​​
+Unobtanium: []
+​​​
+"Web and Front-end": (1) […]
+     
+     */
     "Unobtanium": {
       "color": "#1668ba",
       "room": "313"
@@ -96,7 +127,7 @@ getColor(trackName) {
       "room": "Level 1",
       "color": "#a84617"
     },
-    "Break": {
+    "Keynote Room": {
       "room": "Sponsor Lounge",
       "color": "#a84617"
     },
@@ -112,7 +143,7 @@ getColor(trackName) {
       "room": "Sponsor Lounge",
       "color": "#a84617"
     },
-    "Registration & Breakfast": {
+    "Foyer": {
       "room": "Sponsor Lounge",
       "color": "#a84617"
     },
@@ -280,9 +311,9 @@ getColor(trackName) {
     return <div>
             <Toolbar id="toolbar">
               <Tabs style={flex} value={this.state.dateIndex}>
-                <Tab label="Feb 19" value={0}  onClick={this.setDate.bind(this, 0)} style={{"color":"black"}}/>
-                <Tab label="Feb 20" value={1} onClick={this.setDate.bind(this, 1)} style={{"color":"black"}}/>                
-                <Tab label="Feb 21" value={2} onClick={this.setDate.bind(this, 2)} style={{"color":"black"}}/>                
+                <Tab label="Apr 12" value={0}  onClick={this.setDate.bind(this, 0)} style={{"color":"black"}}/>
+                <Tab label="Apr 13" value={1} onClick={this.setDate.bind(this, 1)} style={{"color":"black"}}/>                
+                <Tab label="Apr 14" value={2} onClick={this.setDate.bind(this, 2)} style={{"color":"black"}}/>                
               </Tabs>
             </Toolbar>
             <Divider/>
